@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Règles détaillées de Terre 2187 : création V20, jets de D6, conflits, défenses, blessures, récupération et livret joueur PDF.">
+  <meta property="og:title" content="Règles de jeu — Terre 2187">
+  <meta property="og:description" content="Comprendre la création V20, résoudre une action, gérer les conflits et télécharger le livret joueur.">
+  <title>Règles de jeu — Terre 2187</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+  <script src="js/catalogue.js" defer></script>
+  <script src="js/rules.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Terre 2187, accueil">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">TERRE <b>2187</b></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="index.html"><img class="nav-illustration" src="assets/lieux-ville-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Le monde</span></a>
+      <a href="compendium.html"><img class="nav-illustration" src="assets/compendium-hero-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Compendium</span></a>
+      <a href="index.html#quotidien"><img class="nav-illustration" src="assets/hero-terre-2187-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Une journée en 2187</span></a>
+      <a href="aventures.html"><img class="nav-illustration" src="assets/lieux-pyrenees-card.webp" alt="" width="96" height="64" decoding="async"><span>Aventures</span></a>
+      <a href="creer.html"><img class="nav-illustration" src="assets/menu-personnages-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Créer un personnage</span></a>
+      <a class="active" href="regles.html"><img class="nav-illustration" src="assets/menu-regles-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Règles</span></a>
+    </nav>
+    <a class="header-cta" href="creer.html">Créer ma fiche <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero illustrated-hero illustrated-regles">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> LIVRET JOUEUR · RÈGLES V20</p>
+        <h1>Des règles claires.<br><em>Des choix qui comptent.</em></h1>
+        <p class="page-lead">Décrivez ce que votre personnage tente et ce qu’il risque. Les dés tranchent seulement les actions incertaines qui ont un enjeu ; leurs conséquences font avancer la scène.</p>
+        <div class="rules-intro-actions">
+          <a class="button button-primary" href="assets/terre-2187-livret-joueur.pdf" download>Télécharger le livret joueur <span aria-hidden="true">↓</span></a>
+          <a class="button button-quiet" href="#actions">Voir un exemple de jet <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules-nav-band">
+      <div class="page-wrap">
+        <nav class="rules-page-nav" aria-label="Sommaire des règles">
+          <a href="#creation">Création</a><a href="#competences">Compétences</a><a href="#hobbies">Hobbies et talents</a><a href="#actions">Jets</a><a href="#tours">Tours</a><a href="#conflits">Conflits</a><a href="#ressources">Réserves</a><a href="#livret">Livret PDF</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="content-section" id="creation">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> CRÉATION V20</p>
+        <h2 class="section-title">Créer un personnage</h2>
+        <p class="section-lead">La fiche V20 définit les points de départ. Le parcours guidé applique ces limites et calcule les réserves.</p>
+        <div class="rules-quick-grid">
+          <article class="rule-tile"><span>01 / CARACTÉRISTIQUES</span><strong>6 points</strong><p>Répartissez-les entre Force, Agilité, Esprit et Empathie. Chaque caractéristique vaut de 1 à 3 ; aucune ne commence à 0.</p></article>
+          <article class="rule-tile"><span>02 / COMPÉTENCES</span><strong>12 points</strong><p>Répartissez-les entre 16 compétences. Une compétence peut valoir 0 et ne dépasse pas 3 à la création.</p></article>
+          <article class="rule-tile"><span>03 / HOBBIES</span><strong>3 choix</strong><p>Un hobby pertinent ajoute un D6 à un jet. Un seul hobby peut contribuer à la même action.</p></article>
+          <article class="rule-tile"><span>04 / RÉSERVES</span><strong>Deux calculs</strong><p>Santé = Force + Agilité. Résolution = Esprit + Empathie. Les talents consomment de la Résolution.</p></article>
+        </div>
+        <div class="callout">Une profession décrit une expérience et un milieu. Elle ne confère ni compétence supplémentaire, ni bonus automatique, ni accès libre au matériel spécialisé.</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="competences">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> CARACTÉRISTIQUES & COMPÉTENCES</p>
+        <h2 class="section-title">Choisir l’approche adaptée</h2>
+        <p class="section-lead">La caractéristique indique la qualité que la personne mobilise ; la compétence, le savoir-faire qu’elle emploie. Le joueur décrit son geste, puis le meneur associe les deux valeurs qui correspondent à cette approche.</p>
+
+        <div class="characteristic-basics">
+          <article class="characteristic-key">
+            <span>LA QUALITÉ MOBILISÉE</span>
+            <h3>Caractéristique</h3>
+            <p>Effort, mouvement, réflexion ou relation : elle décrit la manière dont le personnage aborde l’action. À la création V20, les 6 points sont répartis entre les quatre caractéristiques, de 1 à 3 chacune.</p>
+          </article>
+          <article class="characteristic-key">
+            <span>LE SAVOIR-FAIRE EMPLOYÉ</span>
+            <h3>Compétence</h3>
+            <p>Elle précise la technique utilisée : observer, piloter, soigner, négocier… À la création, les 12 points sont répartis entre les 16 compétences, avec un maximum de 3 dans chacune.</p>
+          </article>
+        </div>
+
+        <p class="skill-pool-note"><strong>Pour un jet :</strong> caractéristique + compétence = nombre de D6. Par exemple, Force 2 + Endurance 1 donne 3 D6. Une compétence à 0 signifie qu’aucun point n’a été investi dans cette spécialité ; elle ne se confond pas avec une caractéristique, qui commence à 1.</p>
+
+        <div class="skill-reference skill-reference-detailed">
+          <article class="characteristic-card">
+            <header><div><span>Effort · puissance · endurance</span><h3>Force</h3></div><small>01—03</small></header>
+            <p class="characteristic-summary">La Force couvre l’effort physique et la capacité à soutenir une action, mais aussi la fermeté avec laquelle on occupe sa place ou fait entendre sa voix.</p>
+            <dl class="skill-definitions">
+              <div><dt>Corps-à-corps</dt><dd>Agir à portée immédiate : porter un coup, retenir, repousser ou se dégager d’une prise.</dd></div>
+              <div><dt>Endurance</dt><dd>Tenir dans la durée malgré l’effort, la fatigue ou des conditions physiques éprouvantes.</dd></div>
+              <div><dt>Affirmation</dt><dd>Énoncer clairement une position, poser une limite et rester ferme face à la pression.</dd></div>
+              <div><dt>Présence</dt><dd>Capter l’attention, donner du poids à sa parole ou soutenir un groupe par son assurance.</dd></div>
+            </dl>
+          </article>
+
+          <article class="characteristic-card">
+            <header><div><span>Mouvement · réflexes · adresse</span><h3>Agilité</h3></div><small>01—03</small></header>
+            <p class="characteristic-summary">L’Agilité représente la coordination, les réflexes, la précision du geste et le sens du bon moment.</p>
+            <dl class="skill-definitions">
+              <div><dt>Mobilité et esquive</dt><dd>Se déplacer avec précision, franchir un obstacle, se placer ou éviter un danger immédiat.</dd></div>
+              <div><dt>Tir</dt><dd>Viser et atteindre une cible à distance, en tenant compte des conditions du tir.</dd></div>
+              <div><dt>Pilotage</dt><dd>Manœuvrer un véhicule ou un engin accessible, surtout lorsque le trajet ou la conduite se complique.</dd></div>
+              <div><dt>Tact</dt><dd>Choisir le bon moment et la bonne formulation pour intervenir avec finesse dans un échange.</dd></div>
+            </dl>
+          </article>
+
+          <article class="characteristic-card">
+            <header><div><span>Observation · analyse · ingénierie</span><h3>Esprit</h3></div><small>01—03</small></header>
+            <p class="characteristic-summary">L’Esprit sert à remarquer, comprendre, relier des informations et résoudre un problème par l’analyse ou la technique.</p>
+            <dl class="skill-definitions">
+              <div><dt>Observation</dt><dd>Repérer un détail, une trace, un changement ou une anomalie dans la situation présente.</dd></div>
+              <div><dt>Recherche</dt><dd>Retrouver des informations, explorer des sources et croiser des indices de façon méthodique.</dd></div>
+              <div><dt>Ingénierie</dt><dd>Comprendre le fonctionnement d’un système technique, diagnostiquer un problème ou envisager une réparation.</dd></div>
+              <div><dt>Argumentation</dt><dd>Construire un raisonnement, présenter des éléments probants et répondre aux objections.</dd></div>
+            </dl>
+          </article>
+
+          <article class="characteristic-card">
+            <header><div><span>Écoute · relations · soutien</span><h3>Empathie</h3></div><small>01—03</small></header>
+            <p class="characteristic-summary">L’Empathie aide à comprendre les besoins et les émotions d’autrui, à faciliter les relations et à apporter un soutien adapté.</p>
+            <dl class="skill-definitions">
+              <div><dt>Écoute</dt><dd>Accorder une attention réelle à une personne et percevoir ce qu’elle exprime, y compris avec hésitation.</dd></div>
+              <div><dt>Médiation</dt><dd>Apaiser un désaccord, faire circuler la parole et aider les personnes à trouver un terrain commun.</dd></div>
+              <div><dt>Négociation</dt><dd>Clarifier les intérêts de chacun, proposer des concessions et chercher un accord acceptable.</dd></div>
+              <div><dt>Soin et soutien</dt><dd>Apporter une aide concrète ou un soin adapté aux besoins de la personne et aux moyens disponibles.</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <aside class="characteristic-choice-example">
+          <p class="eyebrow"><span class="eyebrow-line"></span> EXEMPLE · UNE INTENTION, PLUSIEURS APPROCHES</p>
+          <h3>Obtenir l’accès à un atelier partagé</h3>
+          <p>Le personnage veut faire autoriser une réparation urgente. Le choix dépend de la façon dont il s’y prend :</p>
+          <ul>
+            <li><strong>Empathie + Négociation</strong> : proposer un horaire ou un échange qui tienne compte des besoins de l’équipe.</li>
+            <li><strong>Esprit + Argumentation</strong> : exposer les faits et expliquer pourquoi la réparation ne peut attendre.</li>
+            <li><strong>Force + Affirmation</strong> : poser clairement une limite liée à la sécurité.</li>
+            <li><strong>Agilité + Tact</strong> : choisir le moment et les mots qui permettront d’aborder le sujet sans braquer l’équipe.</li>
+          </ul>
+          <p class="characteristic-example-foot">Le joueur annonce son intention et décrit son geste avant le lancer. Le duo de valeurs découle de cette description, pas seulement de l’objectif recherché.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="content-section" id="hobbies">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> HOBBIES & TALENTS</p>
+        <h2 class="section-title">Des passions qui comptent</h2>
+        <p class="section-lead">Le hobby donne un petit avantage lorsqu’il s’applique ; son talent permet un effet précis, avec ses propres limites.</p>
+        <div class="rules-detail-grid">
+          <article class="rules-card"><h3>Bonus du hobby</h3><p>Ajoutez <strong>+1 D6</strong> quand le hobby choisi est directement pertinent. Un seul hobby contribue à un même jet. Les équipements, trousses et objets ordinaires ne donnent pas de bonus automatique.</p></article>
+          <article class="rules-card"><h3>Activation d’un talent</h3><p>Dépensez <strong>1 Résolution avant l’action</strong>. Le point n’est pas rendu en cas d’échec. Sauf indication du talent, il ne donne ni action ni attaque supplémentaire ; deux effets identiques ne se cumulent pas.</p></article>
+        </div>
+        <div class="hobby-catalog" id="hobbyCatalog" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="content-section" id="actions">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> RÉSOLUTION D’UNE ACTION</p>
+        <h2 class="section-title">Du geste aux conséquences</h2>
+        <p class="section-lead">Avant le lancer, annoncez l’objectif et le risque. Le meneur fixe le seuil de réussite afin que chacun sache ce qui est en jeu.</p>
+        <div class="rules-formula"><span>Caractéristique</span><b>+</b><span>Compétence</span><b>+</b><span>Modificateurs</span><b>=</b><strong>Réserve de D6</strong></div>
+        <div class="rules-quick-grid rules-threshold-grid">
+          <article class="rule-tile"><span>SEUIL 1</span><strong>Sous pression</strong><p>Tâche simple, mais l’échec aurait un coût ou ferait perdre une occasion.</p></article>
+          <article class="rule-tile"><span>SEUIL 2</span><strong>Exigeante</strong><p>Il faut de l’application ou de bonnes conditions pour réussir.</p></article>
+          <article class="rule-tile"><span>SEUIL 3</span><strong>Difficile</strong><p>La tâche demande une approche solide, un effort ou une préparation.</p></article>
+          <article class="rule-tile"><span>SEUIL 4 OU +</span><strong>Exceptionnelle</strong><p>Réservez ces seuils aux actions particulièrement ardues.</p></article>
+        </div>
+        <div class="callout">Chaque résultat de 6 vaut une réussite ; les résultats de 1 à 5 n’en donnent aucune. Sauf règle spéciale d’un talent, un dé ne se relance pas. Une action impossible dans les circonstances ne devient pas possible grâce aux dés.</div>
+        <div class="rules-example-grid">
+          <article class="rules-example">
+            <p class="eyebrow"><span class="eyebrow-line"></span> EXEMPLE · JET D’ACTION</p>
+            <h3>Diagnostiquer un capteur intermittent</h3>
+            <p>Le personnage a Esprit 2 et Ingénierie 2. Son hobby Électronique s’applique à ce circuit : <strong>2 + 2 + 1 D6 = 5 D6.</strong></p>
+            <p>Résultats : <strong>6, 4, 6, 2, 1</strong> — deux réussites. Si le seuil annoncé est 2, le diagnostic aboutit.</p>
+            <span class="rules-example-note">Le seuil et les conséquences possibles sont connus avant le lancer.</span>
+          </article>
+          <article class="rules-example">
+            <p class="eyebrow"><span class="eyebrow-line"></span> EXEMPLE · RÉUSSITE OPPOSÉE</p>
+            <h3>Convaincre pendant une négociation</h3>
+            <p>La personne lance Empathie 3 + Négociation 2, soit 5 D6. Elle obtient deux réussites ; son interlocuteur en obtient lui aussi deux.</p>
+            <p>En cas d’égalité, la situation reste inchangée : aucun accord n’est imposé. Le groupe peut préciser une nouvelle approche ou un nouvel enjeu avant un autre jet.</p>
+            <span class="rules-example-note">Les réussites opposées ne remplacent pas le consentement des personnages.</span>
+          </article>
+        </div>
+        <div class="rules-two-col">
+          <article class="rules-card"><h3>Opposition</h3><p>Chaque partie lance sa réserve. Le résultat le plus élevé l’emporte. Une même réserve peut résoudre une séquence continue tant qu’aucun nouvel adversaire ou nouvel enjeu n’entre en jeu.</p></article>
+          <article class="rules-card"><h3>Quand ne pas lancer</h3><p>Si l’action est sans enjeu, laissez-la réussir selon la fiction. Si elle est impossible dans les circonstances, annoncez-le et cherchez une autre approche plutôt que de demander un jet.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tours">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> TEMPS & DÉPLACEMENTS</p>
+        <h2 class="section-title">Un tour, une action, un choix</h2>
+        <div class="rules-two-col">
+          <article class="rules-card"><h3>Ordre d’initiative</h3><p>Dans une scène qui utilise l’initiative, le plus petit numéro de carte agit en premier. L’ordre reste stable pendant la scène. Au début d’un tour, deux alliés peuvent échanger leur place dans l’ordre.</p></article>
+          <article class="rules-card"><h3>Se déplacer</h3><p>À son tour, un personnage dispose d’une action principale et d’un déplacement gratuit vers une zone adjacente si le passage est praticable. Consacrer son action principale au déplacement permet d’avancer d’une zone supplémentaire ; un déplacement difficile peut atteindre trois zones en tout.</p></article>
+        </div>
+        <div class="callout">Le terrain, les obstacles, la foule et le véhicule peuvent limiter la progression. Un jet d’Observation peut repérer une approche discrète ; un jet approprié peut permettre de rattraper une personne en fuite, selon la situation.</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="conflits">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> CONFLITS, DÉFENSES & BLESSURES</p>
+        <h2 class="section-title">Agir sans réduire le conflit aux dégâts</h2>
+        <p class="section-lead">Annoncez la cible, le mode — contact ou distance — et l’objectif. Utilisez Corps-à-corps ou Tir avec la caractéristique associée. L’attaque touche seulement si ses réussites dépassent la Défense ; les réussites restantes peuvent payer des manœuvres.</p>
+        <div class="rules-formula"><span>Défense fixe</span><b>=</b><strong>max(1, partie entière de (caractéristique défensive + compétence défensive) / 6)</strong></div>
+        <div class="rules-two-col">
+          <article class="rules-card"><h3>Défense naturelle active</h3><p>Une fois par round, la cible peut lancer Force + Endurance pour encaisser, ou Agilité + Mobilité et esquive pour éviter. Les réussites remplacent sa Défense fixe pour cette attaque ; elles ne s’y ajoutent pas. Elle peut aussi garder sa valeur fixe.</p></article>
+          <article class="rules-card"><h3>Défense avec équipement</h3><p>Chaque équipement défensif adapté avec un bonus positif offre une défense active supplémentaire par round. Lancez les D6 indiqués et ajoutez les réussites à la Défense fixe. Un seul équipement contribue à une défense ; il doit correspondre à la menace.</p></article>
+        </div>
+        <div class="rules-table-scroll" role="region" aria-label="Exemples d’équipements défensifs" tabindex="0">
+          <table class="rules-table">
+            <caption>Exemples d’équipements défensifs usuels</caption>
+            <thead><tr><th scope="col">Équipement</th><th scope="col">Défense active</th><th scope="col">Condition d’emploi</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Tonfa ou bâton de sûreté</th><td>+1 D6</td><td>Parade à portée, si elle est possible.</td></tr>
+              <tr><th scope="row">Gilet souple / protection sportive</th><td>+1 D6</td><td>Contre une menace ou un impact adapté.</td></tr>
+              <tr><th scope="row">Gilet renforcé / bouclier de sécurité</th><td>+2 D6</td><td>Selon la menace, l’interception ou la parade possible.</td></tr>
+              <tr><th scope="row">Combinaison technique</th><td>+1 D6</td><td>Contre le danger prévu par sa conception.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="rules-example-grid">
+          <article class="rules-example">
+            <p class="eyebrow"><span class="eyebrow-line"></span> EXEMPLE · ATTAQUE</p>
+            <h3>Toucher et renverser</h3>
+            <p>Un personnage lance Force 3 + Corps-à-corps 2 : 5 D6. Il obtient deux réussites face à une Défense fixe de 1. L’attaque la dépasse ; il reste une réussite à dépenser.</p>
+            <p>Il choisit Renverser, qui coûte une réussite. Si l’attaque peut réellement blesser, elle inflige 1 dégât ; la cible se relève à son prochain tour en utilisant son déplacement gratuit et conserve son action principale.</p>
+            <span class="rules-example-note">Les réussites excédentaires achètent une manœuvre ; elles n’augmentent pas automatiquement les dégâts.</span>
+          </article>
+          <article class="rules-example">
+            <p class="eyebrow"><span class="eyebrow-line"></span> EXEMPLE · COUVERT</p>
+            <h3>Choisir sa position</h3>
+            <p>Un couvert partiel ajoute +1 à la Défense fixe ; un couvert solide ajoute +2. Ces bonus ne se cumulent pas : on retient le plus efficace.</p>
+            <p>Un obstacle impénétrable bloque une attaque directe. Un couvert destructible cesse de protéger lorsque sa Structure atteint 0.</p>
+            <span class="rules-example-note">Avant une action risquée, rendez visibles les dangers prévisibles pour que le joueur puisse adapter son geste.</span>
+          </article>
+        </div>
+        <h3 class="rules-subtitle">Manœuvres après une attaque réussie</h3>
+        <div class="rules-table-scroll" role="region" aria-label="Coût et effet des manœuvres" tabindex="0">
+          <table class="rules-table">
+            <caption>Dépensez les réussites qui restent après la Défense</caption>
+            <thead><tr><th scope="col">Coût</th><th scope="col">Manœuvre</th><th scope="col">Effet</th></tr></thead>
+            <tbody>
+              <tr><td>1 réussite</td><th scope="row">Repousser</th><td>Déplacer la cible selon la situation ; cela ne provoque ni dégât ni chute automatiquement.</td></tr>
+              <tr><td>1 réussite</td><th scope="row">Renverser</th><td>La cible se relève à son prochain tour en consommant son déplacement gratuit ; elle garde son action principale.</td></tr>
+              <tr><td>1 réussite</td><th scope="row">Tir de couverture</th><td>Désigner un passage ; attaquer le premier adversaire qui le traverse avant le prochain tour.</td></tr>
+              <tr><td>1 réussite</td><th scope="row">Dispersion</th><td>Séparer un groupe selon la fiction, sans dégât ni malus automatique.</td></tr>
+              <tr><td>2 réussites</td><th scope="row">Désarmer</th><td>Écarter l’arme ; sa récupération dépend de sa position et de la situation.</td></tr>
+              <tr><td>2 réussites</td><th scope="row">Immobiliser</th><td>Empêcher le déplacement, sans supprimer les attaques ou les défenses possibles.</td></tr>
+              <tr><td>2 réussites</td><th scope="row">Viser un équipement</th><td>Le neutraliser temporairement, sans le détruire automatiquement.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">Une manœuvre doit rester crédible dans la situation : désarmer ne détruit pas l’arme, immobiliser ne désarme pas et repousser ne renverse pas automatiquement.</div>
+        <div class="rules-two-col">
+          <article class="rules-card"><h3>Défense totale et interposition</h3><p>Renoncer à son action principale permet de garder la Défense totale jusqu’au début du prochain tour et de réutiliser le même équipement contre chaque attaque reçue. Protéger un allié est possible si le personnage peut concrètement intervenir. Hors Défense totale, l’interposition consomme une Défense active disponible ; le protecteur devient la cible avant la résolution de l’attaque.</p></article>
+          <article class="rules-card"><h3>Armes civiles et dégâts collatéraux</h3><p>Une attaque qui dépasse la Défense et peut réellement blesser inflige 1 dégât fixe ; les armes civiles offensives suivent cette même règle, sous réserve de la Résistance des matériaux. Les mains nues relèvent de Corps-à-corps et ne sont pas un objet. Une arme lourde réduit la Défense fixe de 1, au minimum 1, tant qu’elle est maniée ; ce malus ne se cumule pas.</p></article>
+        </div>
+        <div class="callout">Pour les objets et structures, les dégâts qui dépassent leur Résistance réduisent leur réserve de Structure. L’excédent ne passe pas automatiquement à la personne qui les porte.</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="ressources">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> SANTÉ, RÉSOLUTION & PROGRESSION</p>
+        <h2 class="section-title">Des réserves qui changent les choix</h2>
+        <div class="rules-quick-grid">
+          <article class="rule-tile"><span>RÉSERVE PHYSIQUE</span><strong>Santé</strong><p>Force + Agilité. À 0, le personnage subit une blessure critique et sort du conflit ; il a besoin de soins médicaux, sans que cela signifie automatiquement sa mort.</p></article>
+          <article class="rule-tile"><span>EFFORT PERSONNEL</span><strong>Résolution</strong><p>Esprit + Empathie. À 0, le personnage ne peut plus activer de talent avant d’avoir récupéré des points.</p></article>
+          <article class="rule-tile"><span>PAUSE SÛRE</span><strong>+1 Résolution</strong><p>Après une véritable pause en sécurité, récupérez 1 point, sans dépasser le maximum.</p></article>
+          <article class="rule-tile"><span>NUIT SÛRE</span><strong>Récupération totale</strong><p>Une nuit de repos en sécurité rend toute la Résolution. Une blessure ne disparaît pas automatiquement à la fin d’une scène.</p></article>
+        </div>
+        <div class="rules-two-col">
+          <article class="rules-card"><h3>Premiers soins</h3><p>Le talent Premiers secours peut stabiliser une personne si la blessure et les conditions s’y prêtent. Il ne rend pas de Santé et ne réanime pas une personne à 0 Santé ; les soins médicaux restent nécessaires.</p></article>
+          <article class="rules-card"><h3>Après un scénario</h3><p>À la fin d’un scénario terminé, le personnage gagne 1 point d’expérience et augmente de 1 une compétence de Terre. Les caractéristiques n’augmentent pas automatiquement.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="livret">
+      <div class="page-wrap">
+        <div class="rules-download-card">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> À GARDER PRÈS DE LA TABLE</p>
+            <h2 class="section-title">Le livret joueur complet</h2>
+            <p>Retrouvez les règles, les compétences, les hobbies et les talents dans le document de référence Terre 2187. Le PDF compte 16 pages et peut être enregistré ou imprimé.</p>
+          </div>
+          <a class="button button-primary" href="assets/terre-2187-livret-joueur.pdf" download>Télécharger le PDF · 2,2 Mo <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="page-wrap rules-bottom-cta">
+        <p>La page Règles aide à retrouver les procédures pendant une séance. Le parcours guidé applique les limites de création V20 et produit une fiche PDF sans conserver votre saisie en ligne.</p>
+        <a class="button button-primary" href="creer.html">Créer un personnage <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-wrap footer-main">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">TERRE <b>2187</b></span></a>
+      <p>Comprendre les règles.<br>Puis raconter ensemble.</p>
+      <nav aria-label="Navigation de pied de page"><a href="index.html">Le monde</a><a href="compendium.html">Compendium</a><a href="aventures.html">Aventures</a><a href="creer.html">Créer un personnage</a><a href="regles.html">Règles</a></nav>
+    </div>
+    <div class="page-wrap footer-bottom"><span>TERRE 2187 · REPÈRES DE JEU</span><span>La fiche V20 reste la référence.</span></div>
+  </footer>
+</body>
+</html>

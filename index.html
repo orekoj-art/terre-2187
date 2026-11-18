@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Entrez dans Terre 2187, un jeu de rôle solarpunk sur une Terre restaurée, ses habitants et les histoires qu'ils choisissent d'écrire.">
+  <meta property="og:title" content="Terre 2187 — Une Terre restaurée">
+  <meta property="og:description" content="Une planète restaurée. Une humanité curieuse. Un avenir ouvert.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-terre-2187.webp">
+  <title>Terre 2187 — Une Terre restaurée</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+  <script src="js/day-scroll.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Terre 2187, accueil">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">TERRE <b>2187</b></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a class="active" href="index.html"><img class="nav-illustration" src="assets/lieux-ville-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Le monde</span></a>
+      <a href="compendium.html"><img class="nav-illustration" src="assets/compendium-hero-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Compendium</span></a>
+      <a href="#quotidien"><img class="nav-illustration" src="assets/hero-terre-2187-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Une journée en 2187</span></a>
+      <a href="aventures.html"><img class="nav-illustration" src="assets/lieux-pyrenees-card.webp" alt="" width="96" height="64" decoding="async"><span>Aventures</span></a>
+      <a href="creer.html"><img class="nav-illustration" src="assets/menu-personnages-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Créer un personnage</span></a>
+      <a href="regles.html"><img class="nav-illustration" src="assets/menu-regles-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Règles</span></a>
+    </nav>
+    <a class="header-cta" href="creer.html">Commencer sa fiche <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main id="contenu">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-image" role="img" aria-label="Un tram attend le passage d'un troupeau dans une ville-jardin de 2187"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-content page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> UN JEU DE RÔLE SOLARPUNK</p>
+        <h1 id="hero-title">Une planète<br><em>restaurée.</em></h1>
+        <p class="hero-deck">Une humanité curieuse.<br>Un avenir ouvert.</p>
+        <p class="hero-copy">En 2187, la Terre est redevenue un foyer vivant. Les villes, les paysages et les communautés racontent ce que nous avons choisi de réparer — et ce qu’il reste à inventer ensemble.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#quotidien">Entrer dans le monde <span aria-hidden="true">↓</span></a>
+          <a class="button button-quiet" href="creer.html">Créer mon personnage <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-meta"><span>2187</span><span class="meta-dot"></span><span>La Terre, après la Grande réparation</span></div>
+      </div>
+      <div class="hero-caption"><span>01 / 04</span><span>LE QUOTIDIEN A CHANGÉ D’ÉCHELLE</span></div>
+      <a href="#quotidien" class="scroll-cue" aria-label="Défiler vers l'histoire"><span></span></a>
+    </section>
+
+
+    <section class="day-life-section" id="quotidien" aria-labelledby="day-life-title">
+      <div class="page-wrap">
+        <div class="day-life-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> UNE JOURNÉE EN 2187</p>
+            <h2 id="day-life-title">La vie suit son cours.<br><em>À hauteur de Terre.</em></h2>
+          </div>
+          <div class="day-scroll-controls" aria-label="Navigation entre les moments de la journée">
+            <span class="day-scroll-count" id="daySlideCount" aria-live="polite">01 / 04</span>
+            <button class="day-scroll-button" type="button" data-day-prev aria-label="Voir le moment précédent" aria-controls="dayStoryTrack" disabled>←</button>
+            <button class="day-scroll-button" type="button" data-day-next aria-label="Voir le moment suivant" aria-controls="dayStoryTrack">→</button>
+          </div>
+        </div>
+
+        <div class="day-story-track" id="dayStoryTrack" role="region" tabindex="0" aria-label="Quatre moments de vie sur Terre 2187" aria-describedby="dayScrollHelp">
+          <article class="day-story-card" data-day-slide>
+            <div class="day-story-art"><img src="assets/hero-terre-2187.webp" alt="" loading="lazy" decoding="async"><span class="day-story-number">01</span></div>
+            <div class="day-story-copy">
+              <p class="day-story-period">MATINÉE ORDINAIRE</p>
+              <h3>Le tram attend.<br><em>Personne ne s’étonne.</em></h3>
+              <p>Un troupeau traverse le corridor écologique. Sur le quai, l’écran annonce un nouvel horaire. Les voyageurs reprennent leur conversation ; un enfant s’approche de la vitre pour suivre les silhouettes dans les hautes herbes.</p>
+              <p>Au-dessus des rails, passerelles, jardins et canaux dessinent le quartier. Une équipe vérifie les capteurs avant le passage du tram.</p>
+              <blockquote>« Le train aura vingt minutes de retard : le couloir des mammouths est occupé. »</blockquote>
+            </div>
+          </article>
+
+          <article class="day-story-card" data-day-slide>
+            <div class="day-story-art"><img src="assets/adventures/racines-du-ciel.webp" alt="" loading="lazy" decoding="async"><span class="day-story-number">02</span></div>
+            <div class="day-story-copy">
+              <p class="day-story-period">DÉJEUNER SUR UN ROOFTOP-CANOPÉE</p>
+              <h3>À midi, la ville se partage<br><em>à l’ombre des feuilles.</em></h3>
+              <p>Au-dessus des rues, les tables s’installent sur une terrasse-canopée. On partage un repas, des nouvelles du quartier et les projets du jour. Entre les branches, Paris se prolonge de passerelle en jardin.</p>
+              <p>La pause ralentit le rythme sans interrompre la vie autour de soi : le toit reste un lieu de rencontre, de travail et de passage pour le vivant.</p>
+            </div>
+          </article>
+
+          <article class="day-story-card" data-day-slide>
+            <div class="day-story-art"><img src="assets/menu-personnages.webp" alt="" loading="lazy" decoding="async"><span class="day-story-number">03</span></div>
+            <div class="day-story-copy">
+              <p class="day-story-period">APRÈS-MIDI AU TRAVAIL</p>
+              <h3>Un atelier, des gestes<br><em>qui se transmettent.</em></h3>
+              <p>Dans un atelier de quartier, une équipe remet en état un module de filtration d’eau. Les outils circulent, les gestes s’apprennent et chacun explique les choix qui permettront à l’installation de durer.</p>
+              <p>Le travail prend place dans une journée déjà pleine de liens : collègues, voisins, personnes en formation et communauté qui utilisera l’équipement.</p>
+            </div>
+          </article>
+
+          <article class="day-story-card" data-day-slide>
+            <div class="day-story-art"><img src="assets/lieux-lune.webp" alt="" loading="lazy" decoding="async"><span class="day-story-number">04</span></div>
+            <div class="day-story-copy">
+              <p class="day-story-period">DÉPART VERS LA LUNE · EN SOIRÉE</p>
+              <h3>La Terre s’éloigne.<br><em>Un autre foyer attend.</em></h3>
+              <p>Au terminal, une voyageuse vérifie ses effets personnels avant l’embarquement. Dans le hublot, la Terre devient un paysage lointain et la Lune, le prochain lieu de vie.</p>
+              <p>Le trajet change les repères — gravité, rythme, horizon — mais les liens continuent de voyager avec celles et ceux qui partent.</p>
+              <a class="day-story-link" href="compendium.html#lune">Découvrir la vie lunaire <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="day-story-footer">
+          <div class="day-story-progress" id="dayStoryProgress" role="progressbar" aria-label="Progression dans les moments de la journée" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-valuetext="Moment 1 sur 4"><span id="dayStoryProgressFill"></span></div>
+          <p id="dayScrollHelp" class="day-story-help">Faites défiler les scènes au doigt, avec les flèches ou le clavier.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="explore-menu" id="explorer" aria-labelledby="explore-title">
+      <div class="page-wrap">
+        <div class="explore-heading"><p class="eyebrow"><span class="eyebrow-line"></span> VOTRE PROCHAINE ESCALE</p><h2 id="explore-title">Entrez dans <em>Terre 2187.</em></h2></div>
+        <nav class="explore-grid" aria-label="Explorer Terre 2187">
+          <a class="explore-card" href="index.html#terre"><div class="explore-art"><img src="assets/lieux-ville-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div><div class="explore-copy"><span class="card-kicker">01 / DÉCOUVRIR</span><h3>Le monde</h3><p>Une Terre restaurée, à hauteur de vie.</p><span class="explore-arrow" aria-hidden="true">→</span></div></a>
+          <a class="explore-card" href="compendium.html"><div class="explore-art"><img src="assets/compendium-hero-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div><div class="explore-copy"><span class="card-kicker">02 / EXPLORER</span><h3>Le compendium</h3><p>Les lieux, les espèces et les savoirs de 2187.</p><span class="explore-arrow" aria-hidden="true">→</span></div></a>
+          <a class="explore-card" href="aventures.html"><div class="explore-art"><img src="assets/lieux-pyrenees-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div><div class="explore-copy"><span class="card-kicker">03 / PARTIR</span><h3>Les aventures</h3><p>Quatre histoires pour découvrir Terre 2187 en jouant.</p><span class="explore-arrow" aria-hidden="true">→</span></div></a>
+          <a class="explore-card" href="creer.html"><div class="explore-art"><img src="assets/menu-personnages-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div><div class="explore-copy"><span class="card-kicker">04 / INCARNER</span><h3>Votre personnage</h3><p>Un parcours, des liens, une histoire à écrire.</p><span class="explore-arrow" aria-hidden="true">→</span></div></a>
+          <a class="explore-card" href="regles.html"><div class="explore-art"><img src="assets/menu-regles-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div><div class="explore-copy"><span class="card-kicker">05 / JOUER</span><h3>Les règles</h3><p>Les repères pour faire vivre vos aventures.</p><span class="explore-arrow" aria-hidden="true">→</span></div></a>
+        </nav>
+      </div>
+    </section>
+
+
+    <section class="world-section section-dark" id="terre">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> COMMENCER PAR LA TERRE</p>
+            <h2>Un monde <em>habité.</em></h2>
+          </div>
+          <p class="section-intro">La Terre de 2187 a retrouvé des équilibres durables. Ses habitants ont bâti une société de coopération, de savoirs partagés et de soin du vivant. La vie reste diverse, parfois exigeante, toujours singulière.</p>
+        </div>
+        <div class="world-grid">
+          <article class="world-card">
+            <span class="card-kicker">01 / HABITER</span>
+            <div class="world-illustration"><img src="assets/lieux-ville-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div>
+            <h3>Des villes reliées au vivant</h3>
+            <p>Des quartiers compacts, des cours végétalisées et des corridors aériens donnent leur place aux déplacements humains comme aux circulations animales. Les bâtiments associent matériaux sobres et éléments cultivés.</p>
+            <a href="#lieux" class="card-link" aria-label="Voir les lieux de vie">Explorer les lieux <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="world-card">
+            <span class="card-kicker">02 / CONTRIBUER</span>
+            <div class="world-illustration"><img src="assets/menu-personnages-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div>
+            <h3>Des vies aux chemins multiples</h3>
+            <p>Les besoins essentiels sont garantis. Chacun peut apprendre, transmettre, changer de voie ou s’engager dans un projet. Les métiers donnent des responsabilités et des liens, tandis que chaque personne trace son propre parcours.</p>
+            <a href="creer.html#identite" class="card-link">Imaginer un parcours <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="world-card">
+            <span class="card-kicker">03 / COHABITER</span>
+            <div class="world-illustration"><img src="assets/lieux-pyrenees-card.webp" alt="" width="600" height="450" loading="lazy" decoding="async"></div>
+            <h3>Des territoires partagés</h3>
+            <p>Les réserves, les bassins versants, les forêts et les océans sont suivis et protégés. La mobilité s’organise autour des saisons, des milieux et des besoins de celles et ceux qui les habitent.</p>
+            <a href="#lieux" class="card-link">Parcourir les territoires <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <div class="atlas-teaser">
+          <div><span class="card-kicker">L’ATLAS JOUEUR</span><h3>Il reste tant à découvrir.</h3><p>Parcourez les habitudes, les métiers, les paysages et les horizons de Terre 2187, du trajet du matin aux habitats lunaires.</p></div>
+          <a class="button button-primary" href="compendium.html">Ouvrir le compendium <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-section" id="lieux">
+      <div class="page-wrap">
+        <div class="section-heading section-heading-light">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> DES LIEUX POUR DES HISTOIRES</p>
+            <h2>Une planète aux<br><em>paysages multiples.</em></h2>
+          </div>
+          <p class="section-intro">On passe d’une métropole vivante à un territoire sauvage, d’un atelier partagé à une station de recherche. Chaque lieu change les habitudes, les rencontres et les responsabilités des personnages.</p>
+        </div>
+        <div class="place-grid">
+          <article class="place-card place-city">
+            <div class="place-art" aria-hidden="true"><span class="sun-disc"></span><span class="tower tower-one"></span><span class="tower tower-two"></span><span class="canopy canopy-one"></span><span class="canopy canopy-two"></span></div>
+            <div class="place-content"><span class="card-kicker">VILLES COMPACTES</span><h3>Les quartiers-canopée</h3><p>Habiter, apprendre et se déplacer dans une ville qui ménage des passages au vivant.</p></div>
+          </article>
+          <article class="place-card place-mountain">
+            <div class="place-art" aria-hidden="true"><span class="mountain mountain-back"></span><span class="mountain mountain-front"></span><span class="trail"></span></div>
+            <div class="place-content"><span class="card-kicker">GRANDS PAYSAGES</span><h3>Les réserves de montagne</h3><p>Observer les migrations, réparer un sentier ou accompagner une équipe de terrain.</p></div>
+          </article>
+          <article class="place-card place-ocean">
+            <div class="place-art" aria-hidden="true"><span class="moon"></span><span class="wave wave-one"></span><span class="wave wave-two"></span><span class="wave wave-three"></span></div>
+            <div class="place-content"><span class="card-kicker">OCÉANS RESTAURÉS</span><h3>Les routes lumineuses</h3><p>Explorer un littoral renaissant, entre science, navigation et protection des milieux.</p></div>
+          </article>
+        </div>
+        <p class="caption-small">Les lieux présentés ici sont des portes d’entrée pour imaginer des aventures et des personnages.</p>
+      </div>
+    </section>
+
+    <section class="timeline-section">
+      <div class="page-wrap timeline-layout">
+        <div class="timeline-heading">
+          <p class="eyebrow"><span class="eyebrow-line"></span> REPÈRES D’HISTOIRE</p>
+          <h2>La réparation<br><em>prend du temps.</em></h2>
+          <p>Le monde de 2187 est le résultat de décisions, de transmissions et de transformations conduites sur plusieurs générations.</p>
+        </div>
+        <ol class="timeline">
+          <li><span class="timeline-year">XXI<sup>e</sup> siècle</span><div><h3>Les crises et la dépendance</h3><p>Climat, ressources et infrastructures deviennent des enjeux communs.</p></div></li>
+          <li><span class="timeline-year">Après les crises</span><div><h3>La reconquête des communs</h3><p>Des mouvements citoyens et des réformes démocratiques rééquilibrent l’accès aux services essentiels.</p></div></li>
+          <li><span class="timeline-year">Sur plusieurs générations</span><div><h3>La Grande réparation</h3><p>La coopération scientifique accompagne la décarbonation et la restauration des milieux.</p></div></li>
+          <li><span class="timeline-year">2167</span><div><h3>Un nouvel équilibre durable</h3><p>Le rétablissement des grands équilibres climatiques et hydrologiques est reconnu.</p></div></li>
+          <li class="timeline-current"><span class="timeline-year">2187</span><div><h3>Une Terre tournée vers l’avenir</h3><p>Les habitants poursuivent le travail : mieux cohabiter, mieux comprendre et choisir ensemble ce qu’ils souhaitent développer.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="character-teaser">
+      <div class="teaser-glow" aria-hidden="true"></div>
+      <div class="page-wrap teaser-layout">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-line"></span> À VOUS D’ÉCRIRE LA SUITE</p>
+          <h2>Qui êtes-vous<br><em>dans ce monde ?</em></h2>
+          <p class="section-intro">Un métier, trois hobbies, des liens importants et une chose à préserver : commencez par la vie que mène votre personnage.</p>
+          <a class="button button-primary" href="creer.html">Créer mon personnage <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="teaser-stamp" aria-label="Terre 2187, dossier personnel">
+          <span class="stamp-ring">UNE VIE SUR UNE TERRE RESTAURÉE</span>
+          <strong>2187</strong>
+          <span class="stamp-sub">PERSONNE · PARCOURS · REPÈRES</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-wrap footer-main">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">TERRE <b>2187</b></span></a>
+      <p>Une planète restaurée.<br>Une humanité curieuse.</p>
+      <nav aria-label="Navigation de pied de page"><a href="index.html">Le monde</a><a href="compendium.html">Compendium</a><a href="aventures.html">Aventures</a><a href="creer.html">Créer un personnage</a><a href="regles.html">Règles</a></nav>
+    </div>
+    <div class="page-wrap footer-bottom"><span>TERRE 2187 · JEU DE RÔLE SOLARPUNK</span><span>Fait pour être joué ensemble.</span></div>
+  </footer>
+</body>
+</html>

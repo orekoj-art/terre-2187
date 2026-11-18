@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Créez pas à pas un personnage de Terre 2187 selon la fiche V20 et téléchargez votre fiche PDF.">
+  <meta property="og:title" content="Créer un personnage — Terre 2187">
+  <meta property="og:description" content="Un parcours guidé conforme à la fiche V20, avec export PDF.">
+  <title>Créer un personnage — Terre 2187</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+  <script src="js/catalogue.js" defer></script>
+  <script src="js/character.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Terre 2187, accueil">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">TERRE <b>2187</b></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+      <span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="index.html"><img class="nav-illustration" src="assets/lieux-ville-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Le monde</span></a>
+      <a href="compendium.html"><img class="nav-illustration" src="assets/compendium-hero-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Compendium</span></a>
+      <a href="index.html#quotidien"><img class="nav-illustration" src="assets/hero-terre-2187-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Une journée en 2187</span></a>
+      <a href="aventures.html"><img class="nav-illustration" src="assets/lieux-pyrenees-card.webp" alt="" width="96" height="64" decoding="async"><span>Aventures</span></a>
+      <a class="active" href="creer.html"><img class="nav-illustration" src="assets/menu-personnages-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Créer un personnage</span></a>
+      <a href="regles.html"><img class="nav-illustration" src="assets/menu-regles-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Règles</span></a>
+    </nav>
+    <a class="header-cta" href="regles.html">Consulter les règles <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero illustrated-hero illustrated-personnages" id="identite">
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> DOSSIER PERSONNEL · VERSION V20</p>
+        <h1>Une personne.<br><em>Des liens. Des choix.</em></h1>
+        <p class="page-lead">Partez de la vie que mène votre personnage. Décrivez son parcours, répartissez ses aptitudes, choisissez ses hobbies et ses moyens, puis repartez avec une fiche PDF prête à jouer.</p>
+        <div class="hero-meta"><span>9 étapes guidées</span><span class="meta-dot"></span><span>Fiche PDF</span></div>
+      </div>
+    </section>
+
+    <section class="creator-body">
+      <div class="page-wrap">
+        <div class="creation-notice" role="note">
+          <strong>À savoir avant de commencer :</strong> la création reste uniquement dans cette page pendant votre visite. Elle n’est pas enregistrée dans le navigateur. Téléchargez le PDF pour conserver votre fiche. Si vous quittez ou rechargez la page avant l’export, votre saisie sera perdue.
+        </div>
+        <div class="wizard-layout">
+          <section class="wizard-card" aria-labelledby="wizard-title">
+            <div class="wizard-top">
+              <div class="wizard-step-count"><span id="wizard-title">DOSSIER PERSONNEL</span><strong id="stepCounter">Étape 1 sur 9</strong></div>
+              <div class="progress-track" role="progressbar" aria-label="Progression de la création" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><div class="progress-fill" id="progressFill"></div></div>
+            </div>
+            <form id="characterForm" novalidate>
+              <div class="wizard-content" id="wizardContent" aria-live="polite"></div>
+              <div class="wizard-controls">
+                <button id="previousStep" type="button" disabled>← Précédent</button>
+                <button id="nextStep" class="next-button" type="button">Continuer <span aria-hidden="true">→</span></button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="summary-card" id="summaryCard" aria-label="Résumé en temps réel">
+            <button type="button" class="summary-mobile-toggle" id="summaryToggle" aria-expanded="false">Résumé du personnage <span aria-hidden="true">＋</span></button>
+            <div class="summary-extra">
+              <p class="summary-title">VOTRE PERSONNAGE</p>
+              <h2 class="summary-name" id="summaryName">Nouvelle personne</h2>
+              <p class="summary-activity" id="summaryActivity">Le récit commence ici.</p>
+              <hr class="summary-rule">
+              <div class="summary-metrics">
+                <div class="summary-metric"><span>Santé</span><strong id="summaryHealth">—</strong></div>
+                <div class="summary-metric"><span>Résolution</span><strong id="summaryResolve">—</strong></div>
+              </div>
+              <hr class="summary-rule">
+              <ul class="summary-list">
+                <li><span>Caractéristiques</span><span id="summaryStats">0 / 6</span></li>
+                <li><span>Compétences</span><span id="summarySkills">0 / 12</span></li>
+                <li><span>Hobbies</span><span id="summaryHobbies">0 / 3</span></li>
+                <li><span>Repère choisi</span><span id="summaryCompanion">À choisir</span></li>
+              </ul>
+              <p class="summary-note">Aucun métier, hobby ou équipement ne donne de bonus automatique. Les règles détaillées sont disponibles dans le <a class="text-link" href="regles.html">livret de règles</a>.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="alert-dialog" id="downloadDialog" aria-labelledby="downloadTitle">
+    <h2 id="downloadTitle">Fiche téléchargée</h2>
+    <p>Votre dossier personnel a été généré en PDF. Enregistrez-le sur votre appareil : il n’existe pas de sauvegarde en ligne ni de reprise de formulaire.</p>
+    <button class="button button-primary" id="closeDownloadDialog" type="button">Compris</button>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="page-wrap footer-main">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">TERRE <b>2187</b></span></a>
+      <p>Une vie sur une Terre restaurée.<br>À vous de choisir son parcours.</p>
+      <nav aria-label="Navigation de pied de page"><a href="index.html">Le monde</a><a href="compendium.html">Compendium</a><a href="aventures.html">Aventures</a><a href="creer.html">Créer un personnage</a><a href="regles.html">Règles</a></nav>
+    </div>
+    <div class="page-wrap footer-bottom"><span>TERRE 2187 · DOSSIER PERSONNEL V20</span><span>PDF conservé sur votre appareil.</span></div>
+  </footer>
+</body>
+</html>

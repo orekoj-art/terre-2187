@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Le compendium de Terre 2187 : société, villes vivantes, faune restaurée, technologies, voyages, Lune et métiers.">
+  <meta property="og:title" content="Compendium — Terre 2187">
+  <meta property="og:description" content="Un atlas vivant pour découvrir la Terre de 2187 et les histoires qu’on peut y raconter.">
+  <title>Compendium — Terre 2187</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/site.js" defer></script>
+  <script src="js/catalogue.js" defer></script>
+  <script src="js/compendium.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Terre 2187, accueil">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">TERRE <b>2187</b></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="index.html"><img class="nav-illustration" src="assets/lieux-ville-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Le monde</span></a>
+      <a class="active" href="compendium.html"><img class="nav-illustration" src="assets/compendium-hero-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Compendium</span></a>
+      <a href="index.html#quotidien"><img class="nav-illustration" src="assets/hero-terre-2187-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Une journée en 2187</span></a>
+      <a href="aventures.html"><img class="nav-illustration" src="assets/lieux-pyrenees-card.webp" alt="" width="96" height="64" decoding="async"><span>Aventures</span></a>
+      <a href="creer.html"><img class="nav-illustration" src="assets/menu-personnages-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Créer un personnage</span></a>
+      <a href="regles.html"><img class="nav-illustration" src="assets/menu-regles-thumb.webp" alt="" width="96" height="64" decoding="async"><span>Règles</span></a>
+    </nav>
+    <a class="header-cta" href="creer.html">Créer sa fiche <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main id="contenu">
+    <section class="page-hero atlas-hero">
+      <div class="atlas-hero-art" role="img" aria-label="Un tram et ses voyageurs longent un corridor végétalisé où se déplacent des dinosaures herbivores"></div>
+      <div class="page-wrap">
+        <p class="eyebrow"><span class="eyebrow-line"></span> ATLAS JOUEUR · CONNAISSANCES PUBLIQUES</p>
+        <h1>Le compendium<br><em>d’une Terre habitée.</em></h1>
+        <p class="page-lead">Une civilisation qui a réparé ses grands équilibres sans mettre le monde sous cloche. Voici ses paysages, ses habitudes, ses technologies et les désaccords qui donnent encore du mouvement à la vie.</p>
+        <div class="hero-meta"><span>15 chapitres de monde</span><span class="meta-dot"></span><span>24 domaines d’activité</span><span class="meta-dot"></span><span>Un glossaire de jeu</span></div>
+      </div>
+    </section>
+
+    <section class="atlas-introduction">
+      <div class="page-wrap atlas-intro-grid">
+        <div class="atlas-opening-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> COMMENCER PAR LA VIE SUR TERRE</p>
+          <h2>Le tram ralentit.<br><em>La journée continue.</em></h2>
+          <p>À 8 h 12, un troupeau occupe le corridor qui longe les voies. Le réseau annonce quelques minutes de détour. Une passagère range son terminal ; près de la vitre, un enfant suit les silhouettes entre les herbes hautes. Personne n’appelle cela une aventure. C’est simplement le trajet du matin.</p>
+          <p>Plus tard, il y aura le travail, un repas partagé, peut-être une réunion de quartier ou une promenade au bord de l’eau. En 2187, l’extraordinaire s’est glissé dans le quotidien. Les personnes, elles, continuent d’aimer, d’apprendre, de douter et de choisir.</p>
+        </div>
+        <aside class="atlas-note">
+          <span class="atlas-note-mark" aria-hidden="true">2187</span>
+          <p>La Terre n’est pas devenue un décor parfait. Elle est redevenue un lieu dont on prend soin — et où il reste beaucoup à décider.</p>
+          <a href="index.html#quotidien" class="text-link">Revoir la scène d’accueil <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="atlas-guide-band">
+      <div class="page-wrap">
+        <div class="atlas-search-head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> PARCOURIR L’ATLAS</p>
+            <h2>Choisissez un chemin.</h2>
+          </div>
+          <p>Les chapitres vont du quotidien terrestre aux horizons lunaires. Utilisez la recherche pour retrouver un sujet, un métier ou un terme.</p>
+        </div>
+        <div class="atlas-search-row">
+          <label class="atlas-search-label" for="compendiumSearch">Rechercher dans le compendium</label>
+          <div class="atlas-search-control"><span aria-hidden="true">⌕</span><input id="compendiumSearch" type="search" placeholder="Ex. : migrations, justice, Lune…" autocomplete="off"><button id="clearCompendiumSearch" type="button" hidden>Effacer</button></div>
+          <span id="compendiumResultCount" class="atlas-result-count" aria-live="polite">15 chapitres</span>
+        </div>
+        <div class="atlas-progress-wrap"><span>Votre lecture</span><div class="atlas-reading-track" role="progressbar" aria-label="Progression dans le compendium" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="readingProgress" class="atlas-reading-fill"></div></div><span id="readingProgressLabel">0 %</span></div>
+      </div>
+    </section>
+
+    <section class="atlas-body">
+      <div class="page-wrap atlas-layout">
+        <aside class="atlas-sidebar">
+          <details class="atlas-index-mobile">
+            <summary>Sommaire du compendium</summary>
+            <nav class="atlas-index-links" aria-label="Sommaire du compendium">
+              <a href="#vie-quotidienne">01 · La vie sur Terre</a>
+              <a href="#villes">02 · Villes et habitats</a>
+              <a href="#societe">03 · Société et travail</a>
+              <a href="#corps">04 · Corps et santé</a>
+              <a href="#intelligences">05 · IA et libertés</a>
+              <a href="#faune">06 · Espèces et migrations</a>
+              <a href="#paysages">07 · Paysages restaurés</a>
+              <a href="#oceans">08 · Océans renaissants</a>
+              <a href="#infrastructures">09 · Énergie et matières</a>
+              <a href="#voyages">10 · Voyager en 2187</a>
+              <a href="#cultures">11 · Cultures et habitudes</a>
+              <a href="#chronologie">12 · Le long redressement</a>
+              <a href="#institutions">13 · Décider ensemble</a>
+              <a href="#lune">14 · La Lune</a>
+              <a href="#frontieres">15 · Orbite et Mars</a>
+              <a href="#metiers">24 domaines d’activité</a>
+              <a href="#glossaire">Glossaire</a>
+            </nav>
+          </details>
+          <nav class="atlas-index" aria-label="Sommaire du compendium">
+            <p class="atlas-index-label">SOMMAIRE</p>
+            <a href="#vie-quotidienne">01 · La vie sur Terre</a>
+            <a href="#villes">02 · Villes et habitats</a>
+            <a href="#societe">03 · Société et travail</a>
+            <a href="#corps">04 · Corps et santé</a>
+            <a href="#intelligences">05 · IA et libertés</a>
+            <a href="#faune">06 · Espèces et migrations</a>
+            <a href="#paysages">07 · Paysages restaurés</a>
+            <a href="#oceans">08 · Océans renaissants</a>
+            <a href="#infrastructures">09 · Énergie et matières</a>
+            <a href="#voyages">10 · Voyager en 2187</a>
+            <a href="#cultures">11 · Cultures et habitudes</a>
+            <a href="#chronologie">12 · Le long redressement</a>
+            <a href="#institutions">13 · Décider ensemble</a>
+            <a href="#lune">14 · La Lune</a>
+            <a href="#frontieres">15 · Orbite et Mars</a>
+            <a href="#metiers">24 domaines d’activité</a>
+            <a href="#glossaire">Glossaire</a>
+          </nav>
+          <div class="atlas-sidebar-note"><span class="card-kicker">À RETENIR</span><p>Les usages et les technologies varient selon les lieux. Les repères de l’atlas décrivent des possibilités du monde, pas une expérience identique pour tout le monde.</p></div>
+        </aside>
+
+        <div class="atlas-chapters" id="atlasChapters">
+          <section class="atlas-chapter" id="vie-quotidienne" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>01 / LE QUOTIDIEN</span><span>TERRE</span></div>
+            <h2>Une journée parmi d’autres</h2>
+            <p class="atlas-deck">Les grandes réussites de 2187 ne s’annoncent pas chaque matin. Elles se remarquent dans les gestes ordinaires : un soin accessible, un transport qui s’adapte au vivant, une personne qui reprend des études à soixante-dix ans.</p>
+            <p>Un assistant personnel résume la météo et les changements d’itinéraire. Dans la rue, les habitants se croisent entre jardins, commerces, ateliers et espaces publics. Les besoins essentiels sont garantis ; les gens travaillent encore pour apprendre, contribuer, créer, être reconnus ou poursuivre une ambition.</p>
+            <p>À midi, on se retrouve autour d’un repas. Dans l’après-midi, une assemblée discute d’un aménagement ou une équipe part sur le terrain. Le soir, des proches d’autres villes rejoignent la conversation à distance. Ce monde est spectaculaire pour un visiteur venu du XXIᵉ siècle ; pour celles et ceux qui y vivent, c’est la maison.</p>
+            <div class="atlas-fact-grid">
+              <article class="atlas-fact"><span>LE SOCLE</span><strong>Une vie digne</strong><p>Logement de base, alimentation, eau, soins, éducation, mobilité fondamentale et outils de communication sont garantis.</p></article>
+              <article class="atlas-fact"><span>LE RYTHME</span><strong>La vie reste singulière</strong><p>Les habitudes diffèrent selon les régions, les générations, les métiers et les milieux de vie.</p></article>
+            </div>
+          </section>
+
+          <section class="atlas-chapter" id="villes" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>02 / HABITER</span><span>VILLES & TERRITOIRES</span></div>
+            <h2>Des villes qui laissent passer le vivant</h2>
+            <p class="atlas-deck">La plupart des habitants vivent dans des métropoles compactes. Les quartiers anciens n’ont pas été effacés : leur pierre, leurs places et leurs usages côtoient passerelles végétales, transports autonomes et constructions nouvelles.</p>
+            <h3>Architecture cultivée, structures maîtrisées</h3>
+            <p>Des panneaux de mycélium, des bois guidés pendant leur croissance et des cloisons végétales entrent dans la construction. Certains matériaux vivants contribuent à l’isolation, à l’humidité ou à la qualité de l’air. Ils restent entretenus et contrôlés ; les fonctions porteuses et la sécurité reposent sur l’ingénierie. Quelques bâtiments conçus comme des organismes demeurent rares et expérimentaux.</p>
+            <h3>Des quartiers à plusieurs niveaux</h3>
+            <p>Dans certaines villes, des forêts aériennes relient des habitats adaptés à la faune. Les grands animaux utilisent surtout des corridors terrestres dimensionnés pour eux. Jardins, rues, rampes, ascenseurs et commerces se superposent parfois sans abandonner les espaces au sol. Les quartiers historiques conservent leur caractère ; les logements dignes sont garantis, tandis que l’adresse et la surface continuent d’avoir une valeur.</p>
+            <figure class="atlas-visual"><img src="assets/lieux-ville.webp" alt="Une place de quartier mêle immeubles anciens, passerelle végétalisée, marché et espaces de rencontre en 2187" loading="lazy" decoding="async"><figcaption>Un quartier vivant garde ses usages et invente de nouveaux passages.</figcaption></figure>
+            <div class="atlas-callout"><span class="atlas-callout-mark" aria-hidden="true">✳</span><p>Un immeuble peut fleurir à la saison prévue. Il n’est pas conscient : ses cycles sont cultivés, vérifiés et entretenus.</p></div>
+          </section>
+
+          <section class="atlas-chapter" id="societe" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>03 / CONTRIBUER</span><span>VIE COMMUNE</span></div>
+            <h2>L’abondance ne rend personne identique</h2>
+            <p class="atlas-deck">Personne n’a besoin d’un emploi pour survivre. Mais les projets, les savoir-faire, le prestige et les expériences rares comptent toujours. La sécurité matérielle a déplacé les enjeux ; elle ne les a pas supprimés.</p>
+            <p>L’argent, les revenus, les entreprises et la propriété privée existent. Les entreprises innovent et se concurrencent, dans un cadre qui empêche qu’une fortune achète une exemption ou qu’un monopole prive les autres de services vitaux. Les places dans les grandes expéditions, la recherche de pointe et les programmes spatiaux restent convoitées.</p>
+            <p>L’éducation est gratuite et accessible tout au long de la vie. Les enseignants, les tuteurs et l’apprentissage concret accompagnent les outils numériques. Une personne peut changer plusieurs fois de métier, reprendre des études, devenir bénévole ou transmettre une pratique. L’expérience et les qualifications restent nécessaires lorsque la sécurité ou la spécialisation l’exige.</p>
+            <div class="atlas-fact-grid">
+              <article class="atlas-fact"><span>ACCÈS RARES</span><strong>Règles transparentes</strong><p>Réservation, rotation, disponibilité, tirage au sort ou nécessité professionnelle peuvent organiser l’accès à un lieu ou à un équipement spécialisé.</p></article>
+              <article class="atlas-fact"><span>PARCOURS</span><strong>Changer de voie est normal</strong><p>Sur une vie longue, plusieurs métiers, formations, engagements et périodes de retrait peuvent se succéder.</p></article>
+            </div>
+          </section>
+
+          <section class="atlas-chapter" id="corps" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>04 / PRENDRE SOIN</span><span>CORPS & SANTÉ</span></div>
+            <h2>La médecine repousse les limites, pas la vulnérabilité</h2>
+            <p class="atlas-deck">La médecine régénératrice répare de nombreux organes et membres à partir de tissus cultivés. Les cancers sont mieux maîtrisés et certaines lésions autrefois irréversibles peuvent être traitées. Une blessure grave reste pourtant une épreuve, parfois longue.</p>
+            <p>L’espérance de vie courante se situe entre 110 et 130 ans. Les traitements prolongent surtout les années vécues en bonne santé ; vieillesse, handicap, rééducation et deuil font toujours partie de la vie. Des familles peuvent réunir quatre ou cinq générations, et chacun accumule des souvenirs, des métiers et des relations au fil d’une existence.</p>
+            <p>Prothèses et aides sensorielles sont répandues, principalement pour l’autonomie et la santé. Les augmentations restent modérées et encadrées. La santé mentale est accessible et confidentielle. Les émotions ne sont pas effacées : solitude, jalousie, traumatisme, tristesse et amour gardent leur poids. Les archives familiales transmettent des images et des récits, pas une conscience survivante.</p>
+            <div class="atlas-callout"><span class="atlas-callout-mark" aria-hidden="true">✳</span><p>Une personne de soixante-dix ans qui reprend des études n’est pas une exception. Elle sait simplement qu’elle a encore du temps pour apprendre.</p></div>
+          </section>
+
+          <section class="atlas-chapter" id="intelligences" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>05 / COMPRENDRE</span><span>IA & LIBERTÉS</span></div>
+            <h2>Des partenaires numériques sous responsabilité humaine</h2>
+            <p class="atlas-deck">Un assistant peut organiser un trajet, expliquer un dossier, traduire une conversation ou comparer des options. Il connaît parfois les habitudes de la personne qui l’utilise ; celle-ci peut corriger ses propositions, les refuser ou le désactiver.</p>
+            <p>Les robots prennent des formes adaptées à leur travail : roues, bras, pattes, coques ou silhouette humanoïde. Ils sont familiers sans être automatiquement considérés comme conscients. La question d’une expérience subjective chez les IA avancées reste ouverte ; la société en débat avec prudence.</p>
+            <p>Les décisions importantes gardent un responsable humain ou institutionnel identifiable. Les données médicales, sociales et numériques restent sous l’autorité de la personne. Le consentement peut être retiré, un fournisseur remplacé et un résultat automatisé contesté. Les traductions instantanées sont très performantes, mais apprendre une langue conserve sa valeur culturelle.</p>
+          </section>
+
+          <section class="atlas-chapter" id="faune" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>06 / COHABITER</span><span>FAUNE RESTAURÉE</span></div>
+            <h2>Le vivant n’est pas une attraction à l’heure fixe</h2>
+            <p class="atlas-deck">La génétique restauratrice a permis de reconstruire certaines espèces disparues à partir de données fragmentaires. Les grands herbivores — dont des brachiosaures — parcourent des régions adaptées. Ces animaux ressemblent aux formes qui les ont inspirés sans être des copies parfaites du passé.</p>
+            <p>Mammouths et troupeaux contemporains traversent de vastes corridors. Des ptérosaures de grande envergure circulent entre habitats protégés ; certaines migrations d’oiseaux et de papillons rassemblent des millions d’individus. Les horaires, les voies de transport, les éclairages et les activités humaines s’ajustent à ces passages.</p>
+            <figure class="atlas-visual"><img src="assets/lieux-pyrenees.webp" alt="Dans une vallée des Pyrénées, des observateurs suivent à distance une famille de grands herbivores recréés" loading="lazy" decoding="async"><figcaption>Observer, documenter et laisser le troupeau choisir sa route.</figcaption></figure>
+            <p>Des prédateurs de petite et moyenne taille peuvent occuper leur place dans des écosystèmes adaptés. Les prédateurs géants ne sont pas relâchés dans les espaces sauvages. Les animaux domestiqués restent peu nombreux et choisis selon leurs besoins : la familiarité ne supprime ni les soins ni les précautions.</p>
+            <div class="atlas-callout"><span class="atlas-callout-mark" aria-hidden="true">✳</span><p>Les systèmes écologiques observent et aident à comprendre. Les spécialistes décident d’intervenir face à un risque sérieux ; la nature n’est pas contrôlée en permanence.</p></div>
+          </section>
+
+          <section class="atlas-chapter" id="paysages" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>07 / EXPLORER</span><span>PAYSAGES</span></div>
+            <h2>Des milieux différents, jamais uniformes</h2>
+            <p class="atlas-deck">Les déserts n’ont pas été transformés en forêts. Dans certaines régions, la restauration des sols, des graines et des cycles de l’eau fait revenir des floraisons saisonnières, le temps de quelques semaines.</p>
+            <p>Des réserves de recherche reconstituent des environnements inspirés du Carbonifère ou des périodes où vivaient les dinosaures. Elles combinent organismes recréés, espèces actuelles et milieux artificiels. Elles ne prétendent pas restituer exactement un passé dont les données sont incomplètes ; les organismes incompatibles avec les écosystèmes contemporains restent confinés.</p>
+            <p>Les jardins publics mêlent art et biotechnologie. Certaines plantes orientent leurs feuilles, changent de couleur ou s’ouvrent selon des stimuli définis. Ces végétaux ne sont pas conscients et leur diffusion est contrôlée. Les introductions d’organismes font l’objet d’évaluations scientifiques et citoyennes.</p>
+          </section>
+
+          <section class="atlas-chapter" id="oceans" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>08 / PLONGER</span><span>OCÉANS</span></div>
+            <h2>La mer a retrouvé ses saisons</h2>
+            <p class="atlas-deck">L’assainissement des eaux, la protection des habitats et les restaurations écologiques ont rendu aux océans une abondance nouvelle. Les courants et les chaînes alimentaires restent autonomes : la mer n’est pas devenue un jardin artificiel.</p>
+            <p>Certains récifs forment des arches et des cavités monumentales, soutenues durant leur croissance par des matériaux adaptés. Ces « cathédrales océaniques » sont protégées comme des communautés vivantes, pas traitées comme des décors. Des galeries panoramiques permettent parfois l’observation à distance.</p>
+            <figure class="atlas-visual"><img src="assets/lieux-ocean.webp" alt="Un cétacé passe près d’un récif monumental éclairé par des organismes bioluminescents" loading="lazy" decoding="async"><figcaption>À la tombée du jour, le plancton dessine une route lumineuse dans l’eau.</figcaption></figure>
+            <p>Des organismes naturellement bioluminescents dessinent des routes lumineuses dans le sillage des navires. Les populations de cétacés ont retrouvé des dimensions remarquables ; les routes maritimes ralentissent ou se dévient pour limiter bruit et collisions. Au large, des plateformes modulaires accueillent zones humides, nurseries et laboratoires, tandis que des stations ouvrent l’accès à certaines profondeurs.</p>
+          </section>
+
+          <section class="atlas-chapter" id="infrastructures" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>09 / FAIRE CIRCULER</span><span>ÉNERGIE & MATIÈRES</span></div>
+            <h2>L’énergie est abondante ; l’attention reste nécessaire</h2>
+            <p class="atlas-deck">Les dispositifs solaires sont efficaces et durables. Les bâtiments produisent souvent une partie de leur énergie ; des réseaux intelligents coordonnent stockage, production et consommation. Des modes de secours protègent les fonctions essentielles.</p>
+            <p>Un programme orbital de collecteurs solaires transmet déjà une part de son énergie vers des stations réceptrices, tout en restant en cours de déploiement. Ses reflets peuvent former, au crépuscule, des processions lumineuses visibles depuis certaines régions terrestres.</p>
+            <p>Les matériaux adaptatifs peuvent modifier certaines propriétés ou réparer de petites dégradations. Une casse importante demande toujours matière, énergie et intervention humaine. Le recyclage fournit la majeure partie des matériaux terrestres ; l’extraction et les usages spatiaux sont encadrés. Les réseaux sont décentralisés et redondants : une panne reste possible, mais les défaillances en chaîne sont devenues rares.</p>
+          </section>
+
+          <section class="atlas-chapter" id="voyages" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>10 / SE DÉPLACER</span><span>MOBILITÉ</span></div>
+            <h2>Le voyage commence souvent par un train</h2>
+            <p class="atlas-deck">Les grandes métropoles sont reliées par des lignes magnétiques rapides, qui atteignent couramment 500 à 700 km/h sur les tronçons adaptés. Les voyageurs passent ensuite aux transports partagés, aux véhicules à la demande ou aux itinéraires locaux.</p>
+            <p>La voiture individuelle n’est plus indispensable à la majorité. Conduire soi-même demeure un loisir ou une passion. Les aéronefs électriques couvrent les trajets adaptés, les voyages lointains emploient d’autres procédés, et les navires réduisent leur pollution tout en modifiant leurs routes selon les migrations marines.</p>
+            <p>Une rencontre avec un troupeau peut retarder un train. Une zone de nidification peut fermer un sentier. Les habitants consultent les cartes et avis écologiques, puis choisissent un autre passage : la cohabitation fait partie de la logistique ordinaire.</p>
+          </section>
+
+          <section class="atlas-chapter" id="cultures" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>11 / PARTAGER</span><span>CULTURES & HABITUDES</span></div>
+            <h2>Les traditions ne sont pas devenues un seul monde</h2>
+            <p class="atlas-deck">Arts, sports, cuisine, jeux, voyages et rencontres occupent une place importante. Les expériences immersives peuvent recréer un lieu ou une époque, mais le concert partagé, la promenade et le repas gardent leur présence propre.</p>
+            <p>Les cuisines, festivals et langues régionales continuent d’évoluer. Les traductions instantanées facilitent les échanges sans donner toutes les nuances d’une langue. Les agriculteurs et les collectifs combinent gestion de l’eau, restauration des sols, cultures diverses, fermes urbaines et techniques automatisées. L’élevage traditionnel subsiste à plus petite échelle ; les protéines cultivées sont devenues courantes.</p>
+            <p>La société est principalement rationaliste, sans imposer une croyance. Religions, spiritualités personnelles, humanisme et philosophies écologiques coexistent. Familles et relations amoureuses prennent des formes variées. L’ambition, la jalousie et le besoin de reconnaissance ont survécu aux crises qui ont changé le monde.</p>
+          </section>
+
+          <section class="atlas-chapter" id="chronologie" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>12 / REGARDER EN ARRIÈRE</span><span>CHRONOLOGIE PUBLIQUE</span></div>
+            <h2>Le long redressement de l’humanité</h2>
+            <p class="atlas-deck">Aucune invention n’a réparé la planète d’un seul coup. Le changement s’est construit sur plusieurs générations : mouvements citoyens, science, réformes, compromis et corrections d’erreurs.</p>
+            <ol class="atlas-timeline">
+              <li><span>XXIᵉ siècle</span><div><h3>Crises et dépendance</h3><p>Climat, dégradation des milieux, pénuries et crises sanitaires fragilisent les sociétés. L’accès à l’eau, l’énergie, la santé et l’alimentation dépend parfois d’infrastructures trop concentrées.</p></div></li>
+              <li><span>Les générations suivantes</span><div><h3>Reconquête des biens communs</h3><p>Mobilisations, grèves, réseaux scientifiques et réformes démocratiques rééquilibrent les services essentiels. Les entreprises continuent d’innover sous des règles communes.</p></div></li>
+              <li><span>Sur le temps long</span><div><h3>La Grande réparation</h3><p>Décarbonation, restauration des sols, des forêts et des océans, réhabilitation des cycles de l’eau et coopération internationale avancent ensemble, avec des erreurs et des débats.</p></div></li>
+              <li class="timeline-current"><span>2167</span><div><h3>Les grands équilibres se stabilisent</h3><p>Les institutions scientifiques reconnaissent le rétablissement durable des équilibres climatiques et hydrologiques. Les événements extrêmes n’ont pas disparu.</p></div></li>
+              <li class="timeline-current"><span>2187</span><div><h3>Un avenir ouvert</h3><p>Entre six et huit milliards de personnes vivent dans une civilisation pacifiée qui poursuit la restauration, la recherche et l’exploration.</p></div></li>
+            </ol>
+          </section>
+
+          <section class="atlas-chapter" id="institutions" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>13 / DÉCIDER</span><span>INSTITUTIONS & PROTECTION</span></div>
+            <h2>Décider à l’échelle juste</h2>
+            <p class="atlas-deck">Les nations, leurs langues et leurs cultures demeurent. Une citoyenneté planétaire garantit un socle commun de droits ; les institutions collectives interviennent surtout lorsqu’un sujet dépasse les frontières : climat, ressources et grands programmes scientifiques.</p>
+            <p>Les représentants élus travaillent avec assemblées citoyennes, consultations et référendums. Les IA peuvent comparer des scénarios et rendre un dossier compréhensible ; elles ne votent pas et ne gouvernent pas à la place des personnes. Les projets d’infrastructure, de recherche et d’expansion spatiale font encore débat.</p>
+            <p>La justice privilégie prévention, médiation, réparation et réinsertion, sans imposer la médiation aux victimes. Les forces de sécurité et les services de protection civile interviennent lorsque la situation l’exige. Les armées traditionnelles ont presque disparu ; les équipes spécialisées sont organisées autour du secours et de la protection.</p>
+          </section>
+
+          <section class="atlas-chapter" id="lune" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>14 / VIVRE AILLEURS</span><span>LA LUNE</span></div>
+            <h2>Un foyer humain, pas une destination abstraite</h2>
+            <p class="atlas-deck">La Lune accueille des habitats familiaux, des laboratoires, des ateliers et des petites villes permanentes. La plupart des humains vivent sur Terre ; les voyages civils restent coûteux et les places convoitées.</p>
+            <figure class="atlas-visual"><img src="assets/lieux-lune.webp" alt="Un habitat lunaire accueille une serre pressurisée, avec la Terre visible au-dessus de l’horizon" loading="lazy" decoding="async"><figcaption>Un foyer lunaire se construit autour du support-vie, des espaces partagés et des cultures sous serre.</figcaption></figure>
+            <p>Les quartiers combinent volumes protégés, structures de surface et serres pressurisées. Lumière, végétation et espaces collectifs rendent les lieux habitables, tandis que toute sortie exige préparation et équipement. Les personnes nées sur la Lune peuvent se sentir pleinement lunaires et participer aux mêmes institutions communes.</p>
+            <p>La faible gravité façonne muscles, os, équilibre et endurance. Le retour sur Terre demande une adaptation et un suivi, comme un séjour lunaire en demande aux Terriens. Les habitants ont une voix dans les décisions concernant leur territoire et ses ressources ; cela ouvre des négociations, pas une opposition entre deux humanités.</p>
+          </section>
+
+          <section class="atlas-chapter" id="frontieres" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>15 / REGARDER PLUS LOIN</span><span>ORBITE & MARS</span></div>
+            <h2>Les frontières restent des projets humains</h2>
+            <p class="atlas-deck">Des stations orbitales accueillent résidents, chercheurs et équipes techniques. Mars abrite des bases scientifiques occupées par rotation, pas de grandes villes. L’éloignement, les radiations, le ravitaillement et les délais de communication imposent des limites concrètes.</p>
+            <p>Dans de bonnes fenêtres de départ, un trajet Terre–Lune prend un à trois jours ; Mars demande deux à quatre mois. Les engins utilisent plusieurs familles de propulsion et sont entretenus dans l’espace. L’humanité ne sait pas voyager entre les étoiles.</p>
+            <p>Des molécules organiques et des structures intrigantes alimentent l’exobiologie, mais aucune preuve irréfutable de vie extraterrestre n’a été confirmée. Les missions suivent des protocoles de protection biologique pour limiter les contaminations entre mondes. L’exploration reste une entreprise scientifique, civile et collective.</p>
+          </section>
+
+          <section class="atlas-chapter atlas-domain-chapter" id="metiers" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>COMPENDIUM / ACTIVITÉS</span><span>120 PROFILS · 24 DOMAINES</span></div>
+            <h2>Travailler, apprendre, contribuer</h2>
+            <p class="atlas-deck">Les métiers donnent des habitudes, des responsabilités et des personnes à retrouver. Les titres ci-dessous sont des portes d’entrée : un personnage n’en maîtrise pas toutes les spécialités. Une activité professionnelle ne donne ni bonus automatique, ni accès universel aux installations de son secteur.</p>
+            <div class="atlas-search-row atlas-domain-search-row">
+              <label class="atlas-search-label" for="domainSearch">Filtrer les domaines et les profils</label>
+              <div class="atlas-search-control"><span aria-hidden="true">⌕</span><input id="domainSearch" type="search" placeholder="Ex. : vétérinaire, canopée, mobilité…" autocomplete="off"><button id="clearDomainSearch" type="button" hidden>Effacer</button></div>
+              <span id="domainResultCount" class="atlas-result-count" aria-live="polite">24 domaines</span>
+            </div>
+            <div class="atlas-domain-grid" id="domainGrid"></div>
+            <p id="domainNoResults" class="atlas-no-results" hidden>Aucun domaine ou profil ne correspond à cette recherche.</p>
+            <p class="atlas-disclaimer">Les 120 profils du catalogue sont des familles de métiers et des propositions à personnaliser. Un intitulé ne confère ni compétence automatique, ni accès libre aux équipements spécialisés.</p>
+          </section>
+
+          <section class="atlas-chapter" id="personnages" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>POUR LES JOUEURS</span><span>PERSONNE · PARCOURS · REPÈRES</span></div>
+            <h2>Faire naître une histoire</h2>
+            <p class="atlas-deck">Un personnage n’a pas besoin de sauver le monde. Il suffit d’une personne qui compte, d’un projet qu’on ne veut pas abandonner et d’une question qui reste ouverte.</p>
+            <div class="atlas-prompt-grid">
+              <article><span>01</span><h3>Où commence sa journée ?</h3><p>Un quartier-canopée, une ville lunaire, un atelier, une réserve ou une maison près de l’eau changent les gestes quotidiens.</p></article>
+              <article><span>02</span><h3>Qui compte sur lui ?</h3><p>Un proche, une équipe, un animal domestiqué ou un collectif donne des attaches et des obligations réelles.</p></article>
+              <article><span>03</span><h3>Que souhaite-t-il changer ?</h3><p>Un apprentissage, une relation à réparer, un projet collectif ou une ambition professionnelle suffit à lancer le récit.</p></article>
+              <article><span>04</span><h3>Quelle limite devra-t-il respecter ?</h3><p>Une qualification, la disponibilité d’un équipement, un territoire fragile ou le consentement d’autrui peut orienter ses choix.</p></article>
+            </div>
+            <a class="button button-primary atlas-create-link" href="creer.html">Créer une personne en 2187 <span aria-hidden="true">→</span></a>
+          </section>
+
+          <section class="atlas-chapter" id="glossaire" data-atlas-chapter>
+            <div class="atlas-chapter-top"><span>REPÈRES RAPIDES</span><span>GLOSSAIRE</span></div>
+            <h2>Quelques mots du monde</h2>
+            <div class="atlas-glossary-grid">
+              <article><h3>Grande Dépendance</h3><p>Période où de grandes entreprises ont concentré une influence excessive sur des services essentiels.</p></article>
+              <article><h3>Grande réparation</h3><p>Transformation énergétique et restauration des milieux menées sur plusieurs générations.</p></article>
+              <article><h3>Socle de vie garanti</h3><p>Accès assuré aux besoins essentiels, indépendant de l’obligation de travailler.</p></article>
+              <article><h3>Citoyenneté planétaire</h3><p>Ensemble de droits fondamentaux communs aux humains, en complément des appartenances territoriales.</p></article>
+              <article><h3>Corridor écologique</h3><p>Zone permettant aux espèces de circuler entre habitats, au sol, dans l’air ou en mer.</p></article>
+              <article><h3>Architecture vivante</h3><p>Éléments biologiques cultivés, contrôlés et intégrés à certains bâtiments.</p></article>
+              <article><h3>Réserve du temps profond</h3><p>Installation confinée qui reconstitue partiellement un milieu ancien à des fins de recherche ou d’apprentissage.</p></article>
+              <article><h3>Cathédrale océanique</h3><p>Récif monumental protégé pour ses valeurs biologique, scientifique et culturelle.</p></article>
+              <article><h3>Route lumineuse</h3><p>Trace de bioluminescence naturelle parfois visible dans le mouvement d’une mer ou le sillage d’un navire.</p></article>
+              <article><h3>Procession orbitale</h3><p>Reflets solaires successifs de collecteurs en orbite, visibles depuis certaines régions terrestres au crépuscule.</p></article>
+              <article><h3>Protection biologique réciproque</h3><p>Protocoles qui limitent la contamination croisée entre la Terre et les autres mondes.</p></article>
+              <article><h3>Matériau adaptatif</h3><p>Matériau technique dont certaines propriétés changent dans des limites prévues par sa conception.</p></article>
+            </div>
+            <div class="atlas-closing-note"><span class="eyebrow"><span class="eyebrow-line"></span> UN MONDE OUVERT</span><p>Les habitants de 2187 ont préservé leur planète et bâti une paix durable. Ils doivent encore choisir ce qu’ils feront de cet héritage. L’avenir s’écrit dans les familles, les assemblées, les ateliers, les océans et les villes — une décision à la fois.</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-wrap footer-main">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-name">TERRE <b>2187</b></span></a>
+      <p>Une planète restaurée.<br>Des vies singulières.</p>
+      <nav aria-label="Navigation de pied de page"><a href="index.html">Le monde</a><a href="compendium.html">Compendium</a><a href="aventures.html">Aventures</a><a href="creer.html">Créer un personnage</a><a href="regles.html">Règles</a></nav>
+    </div>
+    <div class="page-wrap footer-bottom"><span>TERRE 2187 · ATLAS JOUEUR</span><span>Le monde reste à écrire.</span></div>
+  </footer>
+</body>
+</html>
