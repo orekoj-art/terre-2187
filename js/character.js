@@ -227,7 +227,7 @@
       reviewBlock("Repères", ["<strong>Compagnon ou moyen :</strong> " + esc([state.companion.type, companionValue()].filter(Boolean).join(" · ") || "À préciser"), ...hobbyDetails, "<strong>Personnes :</strong> " + esc(state.attachments.people || "À préciser"), "<strong>Objectif :</strong> " + esc(state.attachments.motivations || "À préciser")]) +
       reviewBlock("Équipement et parcours", ["<strong>Kit principal :</strong> " + esc(equipmentValue("main") || "À préciser"), "<strong>Loisir :</strong> " + esc(equipmentValue("leisure") || "À préciser"), "<strong>Accès partagé :</strong> " + esc(equipmentValue("shared") || "À préciser"), "<strong>Protection :</strong> " + esc(equipmentValue("protection") || "À préciser"), "<strong>Souvenir :</strong> " + esc(state.attachments.memory || "À préciser"), "<strong>Notes :</strong> " + esc(state.notes || "À préciser")]) +
       '<div class="review-actions"><button class="button button-primary" type="button" id="downloadPdf">Télécharger ma fiche PDF <span aria-hidden="true">↓</span></button></div>' +
-      '<div class="download-note">Le PDF contient votre dossier personnel sur deux pages. Enregistrez-le maintenant : il n’est pas possible de reprendre la saisie depuis le fichier.</div>';
+      '<div class="download-note">Le PDF reprend tous les champs du formulaire, avec les talents détaillés. Sa pagination s’adapte à la longueur des réponses. Enregistrez-le maintenant : il n’est pas possible de reprendre la saisie depuis le fichier.</div>';
   }
   const renderers = [renderIdentity, renderStats, renderSkills, renderResources, renderCompanion, renderHobbies, renderAttachments, renderEquipment, renderReview];
   const stepTitles = ["Identité", "Caractéristiques", "Compétences", "Ressources", "Repère personnel", "Hobbies", "Attaches et objectifs", "Équipement", "Vérification"];
@@ -535,25 +535,38 @@
   function pdfEscape(value) {
     return ansiString(value).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)").replace(/[\r\n]+/g, " ");
   }
-  function wrapText(value, limit, maxLines) {
-    const words = String(value || "").replace(/\s+/g, " ").trim().split(" ").filter(Boolean);
-    if (!words.length) return ["—"];
-    const lines = [];
-    let current = "";
-    for (const word of words) {
-      const next = current ? current + " " + word : word;
-      if (next.length > limit && current) {
-        lines.push(current);
-        current = word;
-      } else current = next;
-    }
-    if (current) lines.push(current);
-    if (lines.length > maxLines) {
-      const kept = lines.slice(0, maxLines);
-      kept[maxLines - 1] = kept[maxLines - 1].slice(0, Math.max(1, limit - 1)) + "…";
-      return kept;
-    }
-    return lines;
+  function wrapText(value, limit) {
+    const text = String(value == null ? "" : value).replace(/\r\n?/g, "\n");
+    const output = [];
+    text.split("\n").forEach((paragraph) => {
+      if (!paragraph.trim()) {
+        output.push("");
+        return;
+      }
+      let line = "";
+      const words = paragraph.trim().split(/\s+/);
+      words.forEach((originalWord) => {
+        let word = originalWord;
+        while (word.length > limit) {
+          if (line) {
+            output.push(line);
+            line = "";
+          }
+          output.push(word.slice(0, limit));
+          word = word.slice(limit);
+        }
+        if (!word) return;
+        const next = line ? line + " " + word : word;
+        if (next.length > limit && line) {
+          output.push(line);
+          line = word;
+        } else {
+          line = next;
+        }
+      });
+      if (line) output.push(line);
+    });
+    return output.length ? output : ["—"];
   }
   function colorValue(color) {
     return color.map((number) => Number(number).toFixed(3)).join(" ");
@@ -561,9 +574,9 @@
   function pdfText(ops, x, y, size, value, bold, color) {
     ops.push(colorValue(color || [0.15, 0.2, 0.16]) + " rg BT /" + (bold ? "F2" : "F1") + " " + size + " Tf 1 0 0 1 " + x + " " + y + " Tm (" + pdfEscape(value) + ") Tj ET");
   }
-  function pdfParagraph(ops, x, y, size, value, maxChars, maxLines, leading, color) {
-    const lines = wrapText(value, maxChars, maxLines);
-    lines.forEach((line, index) => pdfText(ops, x, y - index * leading, size, line, false, color || [0.34, 0.39, 0.34]));
+  function pdfParagraph(ops, x, y, size, value, maxChars, leading, color, bold) {
+    const lines = wrapText(value, maxChars);
+    lines.forEach((line, index) => pdfText(ops, x, y - index * leading, size, line, !!bold, color || [0.34, 0.39, 0.34]));
     return y - lines.length * leading;
   }
   function pdfLine(ops, x1, y1, x2, y2, color, width) {
@@ -572,122 +585,256 @@
   function pdfRect(ops, x, y, w, h, color) {
     ops.push(colorValue(color) + " rg " + x + " " + y + " " + w + " " + h + " re f");
   }
-  function section(ops, y, number, label) {
-    pdfText(ops, 42, y, 8, number + " / " + label.toUpperCase(), true, [0.34, 0.48, 0.3]);
-    pdfLine(ops, 42, y - 7, 553, y - 7, [0.79, 0.83, 0.76], 0.6);
-  }
-  function fieldPdf(ops, x, y, width, label, value, maxChars) {
-    pdfText(ops, x, y, 6.7, label.toUpperCase(), true, [0.47, 0.53, 0.46]);
-    pdfParagraph(ops, x, y - 12, 8.5, value || "—", maxChars || Math.floor(width / 5.4), 2, 10, [0.16, 0.21, 0.17]);
-    pdfLine(ops, x, y - 32, x + width, y - 32, [0.87, 0.89, 0.84], 0.45);
-  }
-  function buildPageOne() {
-    const ops = [];
-    pdfRect(ops, 0, 0, 595, 842, [1, 1, 1]);
-    pdfRect(ops, 0, 824, 595, 18, [0.09, 0.15, 0.11]);
-    pdfText(ops, 42, 795, 24, "Terre 2187", true, [0.12, 0.19, 0.13]);
-    pdfText(ops, 42, 779, 8, "DOSSIER PERSONNEL  ·  UNE VIE SUR UNE TERRE RESTAURÉE", true, [0.39, 0.49, 0.36]);
-    pdfText(ops, 468, 795, 7.5, "V20  ·  01 / 02", true, [0.44, 0.52, 0.42]);
-    pdfLine(ops, 42, 767, 553, 767, [0.66, 0.75, 0.62], 1.2);
+  function buildPdfPages() {
+    const pages = [];
+    const bottom = 60;
+    let current = null;
+    let y = 0;
 
-    section(ops, 747, "01", "Identité");
-    const w = 244;
-    const right = 309;
-    fieldPdf(ops, 42, 727, w, "Nom", state.identity.lastName, 38);
-    fieldPdf(ops, right, 727, w, "Prénom", state.identity.firstName, 38);
-    fieldPdf(ops, 42, 691, w, "Âge / pronoms", [state.identity.age, state.identity.pronouns].filter(Boolean).join(" · "), 38);
-    fieldPdf(ops, right, 691, w, "Activité principale", state.identity.activity, 38);
-    fieldPdf(ops, 42, 655, w, "Communauté", state.identity.community, 38);
-    fieldPdf(ops, right, 655, w, "Lieu de vie / environnement", [state.identity.home, state.identity.environment].filter(Boolean).join(" · "), 38);
-    fieldPdf(ops, 42, 619, w, "Origine", state.identity.origin, 38);
-    fieldPdf(ops, right, 619, w, "Lien important / identifiant", [state.identity.importantLink, state.identity.identifier].filter(Boolean).join(" · "), 38);
+    function startPage(first) {
+      const ops = [];
+      pdfRect(ops, 0, 0, 595, 842, [1, 1, 1]);
+      pdfRect(ops, 0, 824, 595, 18, [0.09, 0.15, 0.11]);
+      pdfText(ops, 42, 795, 24, "Terre 2187", true, [0.12, 0.19, 0.13]);
+      pdfText(ops, 42, 779, 8, first ? "FICHE PERSONNAGE  ·  IDENTITÉ ET APTITUDES" : "FICHE PERSONNAGE  ·  SUITE DU DOSSIER", true, [0.39, 0.49, 0.36]);
+      pdfText(ops, 484, 795, 7.5, "RÉFÉRENCE V20", true, [0.44, 0.52, 0.42]);
+      pdfLine(ops, 42, 767, 553, 767, [0.66, 0.75, 0.62], 1.2);
+      current = { ops: ops };
+      pages.push(current);
+      y = 751;
+    }
 
-    section(ops, 575, "02", "Caractéristiques · 6 points au total · 1 à 3 chacune");
-    const stats = [
-      ["Force", state.stats.force, "effort · puissance · endurance"],
-      ["Agilité", state.stats.agility, "mouvement · adresse · réflexes"],
-      ["Esprit", state.stats.spirit, "observation · analyse · ingénierie"],
-      ["Empathie", state.stats.empathy, "écoute · relations · soutien"]
-    ];
-    stats.forEach((item, index) => {
-      const x = index % 2 === 0 ? 42 : right;
-      const y = index < 2 ? 514 : 464;
-      pdfRect(ops, x, y, 244, 40, [0.95, 0.96, 0.93]);
-      pdfText(ops, x + 10, y + 22, 12, item[0], true, [0.17, 0.25, 0.18]);
-      pdfText(ops, x + 10, y + 9, 6.7, item[2], false, [0.47, 0.53, 0.46]);
-      pdfText(ops, x + 217, y + 13, 15, String(item[1]), true, [0.36, 0.51, 0.3]);
-    });
+    function ensureSpace(height) {
+      if (!current) startPage(true);
+      if (y - height < bottom) startPage(false);
+    }
 
-    section(ops, 438, "03", "Compétences · 12 points à répartir · maximum 3 par compétence");
-    catalog.skills.forEach((group, groupIndex) => {
-      const x = groupIndex % 2 === 0 ? 42 : right;
-      const y = groupIndex < 2 ? 310 : 190;
-      pdfRect(ops, x, y, 244, 107, [0.97, 0.975, 0.96]);
-      pdfText(ops, x + 10, y + 88, 12, group.group, true, [0.26, 0.39, 0.26]);
-      pdfLine(ops, x + 10, y + 80, x + 234, y + 80, [0.81, 0.85, 0.78], 0.5);
-      group.items.forEach((name, itemIndex) => {
-        const rowY = y + 63 - itemIndex * 16;
-        pdfText(ops, x + 10, rowY, 7.4, name, false, [0.22, 0.27, 0.22]);
-        pdfText(ops, x + 215, rowY, 8.5, String(state.skills[keysForSkills[name]]), true, [0.35, 0.47, 0.31]);
+    function drawSection(number, label) {
+      const heading = number + " / " + label.toUpperCase();
+      const lines = wrapText(heading, 112);
+      const height = 11 + (lines.length - 1) * 10 + 12;
+      ensureSpace(height + 70);
+      lines.forEach((line, index) => pdfText(current.ops, 42, y - index * 10, 8, line, true, [0.34, 0.48, 0.3]));
+      const lineY = y - lines.length * 10 + 1;
+      pdfLine(current.ops, 42, lineY, 553, lineY, [0.79, 0.83, 0.76], 0.6);
+      y = lineY - 12;
+    }
+
+    function fieldLines(label, value, width) {
+      const labelChars = Math.max(12, Math.floor((width - 8) / (6.7 * 0.53)));
+      const valueChars = Math.max(14, Math.floor((width - 8) / (8.3 * 0.51)));
+      return {
+        label: wrapText(String(label || "").toUpperCase(), labelChars),
+        value: wrapText(value && String(value).trim() ? value : "—", valueChars)
+      };
+    }
+
+    function drawFlowField(label, value) {
+      const textLines = fieldLines(label, value, 511);
+      const labelLines = textLines.label;
+      const valueLines = textLines.value;
+      let lineIndex = 0;
+      let continued = false;
+
+      while (lineIndex < valueLines.length) {
+        const heading = continued ? String(label).toUpperCase() + "  ·  SUITE" : String(label).toUpperCase();
+        const headingLines = wrapText(heading, 112);
+        const headingHeight = headingLines.length * 8 + 4;
+        if (y - headingHeight < bottom + 12) startPage(false);
+        headingLines.forEach((line, index) => pdfText(current.ops, 42, y - index * 8, 6.7, line, true, [0.47, 0.53, 0.46]));
+        y -= headingHeight;
+
+        const available = Math.floor((y - bottom - 8) / 10.5);
+        if (available < 1) {
+          startPage(false);
+          continued = true;
+          continue;
+        }
+        const count = Math.min(available, valueLines.length - lineIndex);
+        for (let index = 0; index < count; index++) {
+          pdfText(current.ops, 42, y - index * 10.5, 8.3, valueLines[lineIndex + index], false, [0.16, 0.21, 0.17]);
+        }
+        lineIndex += count;
+        y -= count * 10.5 + 6;
+        pdfLine(current.ops, 42, y + 2, 553, y + 2, [0.87, 0.89, 0.84], 0.45);
+        y -= 7;
+        if (lineIndex < valueLines.length) {
+          startPage(false);
+          continued = true;
+        }
+      }
+    }
+
+    function drawFieldRow(fields) {
+      const pair = fields.length > 1;
+      const width = pair ? 244 : 511;
+      const laidOut = fields.map((field) => fieldLines(field[0], field[1], width));
+      const tooLong = laidOut.some((item) => item.value.length > 4 || item.label.length > 2);
+      if (tooLong) {
+        fields.forEach((field) => drawFlowField(field[0], field[1]));
+        return;
+      }
+
+      const lineCount = Math.max.apply(null, laidOut.map((item) => item.value.length));
+      const labelCount = Math.max.apply(null, laidOut.map((item) => item.label.length));
+      const rowHeight = labelCount * 8 + 4 + lineCount * 10 + 10;
+      ensureSpace(rowHeight + 12);
+      fields.forEach((field, fieldIndex) => {
+        const x = pair && fieldIndex === 1 ? 309 : 42;
+        const item = laidOut[fieldIndex];
+        item.label.forEach((line, index) => pdfText(current.ops, x, y - index * 8, 6.7, line, true, [0.47, 0.53, 0.46]));
+        const valueY = y - labelCount * 8 - 4;
+        item.value.forEach((line, index) => pdfText(current.ops, x, valueY - index * 10, 8.3, line, false, [0.16, 0.21, 0.17]));
+        pdfLine(current.ops, x, y - rowHeight - 4, x + width, y - rowHeight - 4, [0.87, 0.89, 0.84], 0.45);
       });
-    });
-    section(ops, 166, "04", "Ressources");
-    pdfRect(ops, 42, 105, 244, 43, [0.91, 0.94, 0.88]);
-    pdfText(ops, 54, 131, 7, "SANTÉ  ·  FORCE + AGILITÉ", true, [0.39, 0.46, 0.37]);
-    pdfText(ops, 54, 112, 16, String(state.stats.force + state.stats.agility), true, [0.2, 0.34, 0.22]);
-    pdfRect(ops, right, 105, 244, 43, [0.91, 0.94, 0.88]);
-    pdfText(ops, right + 12, 131, 7, "RÉSOLUTION  ·  ESPRIT + EMPATHIE", true, [0.39, 0.46, 0.37]);
-    pdfText(ops, right + 12, 112, 16, String(state.stats.spirit + state.stats.empathy), true, [0.2, 0.34, 0.22]);
-    pdfLine(ops, 42, 42, 553, 42, [0.79, 0.83, 0.76], 0.55);
-    pdfText(ops, 42, 28, 6.8, "TERRE 2187  ·  DOSSIER PERSONNEL", true, [0.5, 0.56, 0.49]);
-    pdfText(ops, 494, 28, 6.8, "01 / 02", true, [0.5, 0.56, 0.49]);
-    return ops.join("\n");
-  }
-  function buildPageTwo() {
-    const ops = [];
-    pdfRect(ops, 0, 0, 595, 842, [1, 1, 1]);
-    pdfRect(ops, 0, 824, 595, 18, [0.09, 0.15, 0.11]);
-    pdfText(ops, 42, 795, 24, "Terre 2187", true, [0.12, 0.19, 0.13]);
-    pdfText(ops, 42, 779, 8, "DOSSIER PERSONNEL  ·  PARCOURS ET REPÈRES", true, [0.39, 0.49, 0.36]);
-    pdfText(ops, 468, 795, 7.5, "V20  ·  02 / 02", true, [0.44, 0.52, 0.42]);
-    pdfLine(ops, 42, 767, 553, 767, [0.66, 0.75, 0.62], 1.2);
+      y -= rowHeight + 12;
+    }
 
-    section(ops, 747, "05", "Compagnon ou moyen personnel · une option");
-    pdfText(ops, 42, 724, 7, "TYPE", true, [0.47, 0.53, 0.46]);
-    pdfText(ops, 42, 708, 9, state.companion.type || "—", true, [0.16, 0.21, 0.17]);
-    pdfText(ops, 309, 724, 7, "NOM / MODÈLE / ESPÈCE / FONCTION", true, [0.47, 0.53, 0.46]);
-    pdfParagraph(ops, 309, 708, 8.5, companionValue() || "—", 39, 2, 10, [0.16, 0.21, 0.17]);
-    pdfLine(ops, 42, 684, 553, 684, [0.87, 0.89, 0.84], 0.45);
+    function drawLongText(label, value) {
+      drawFlowField(label, value);
+    }
 
-    section(ops, 660, "06", "Hobbies · 3 choix gratuits");
+    function drawStats() {
+      const stats = [
+        ["Force", state.stats.force, "effort · puissance · endurance"],
+        ["Agilité", state.stats.agility, "mouvement · adresse · réflexes"],
+        ["Esprit", state.stats.spirit, "observation · analyse · ingénierie"],
+        ["Empathie", state.stats.empathy, "écoute · relations · soutien"]
+      ];
+      const cardHeight = 42;
+      ensureSpace(cardHeight * 2 + 20);
+      stats.forEach((item, index) => {
+        const column = index % 2;
+        const row = Math.floor(index / 2);
+        const x = column === 0 ? 42 : 309;
+        const top = y - row * (cardHeight + 6);
+        const cardBottom = top - cardHeight;
+        pdfRect(current.ops, x, cardBottom, 244, cardHeight, [0.95, 0.96, 0.93]);
+        pdfText(current.ops, x + 10, top - 17, 11, item[0], true, [0.17, 0.25, 0.18]);
+        pdfText(current.ops, x + 10, top - 32, 6.7, item[2], false, [0.47, 0.53, 0.46]);
+        pdfText(current.ops, x + 216, top - 25, 15, String(item[1]), true, [0.36, 0.51, 0.3]);
+      });
+      y -= cardHeight * 2 + 20;
+    }
+
+    function drawSkillGroups() {
+      const groups = [];
+      for (let index = 0; index < catalog.skills.length; index += 2) {
+        groups.push(catalog.skills.slice(index, index + 2));
+      }
+      const cardHeight = 68;
+      groups.forEach((row) => {
+        ensureSpace(cardHeight + 8);
+        row.forEach((group, column) => {
+          const x = column === 0 ? 42 : 309;
+          const top = y;
+          const cardBottom = top - cardHeight;
+          pdfRect(current.ops, x, cardBottom, 244, cardHeight, [0.97, 0.975, 0.96]);
+          pdfText(current.ops, x + 9, top - 14, 9.5, group.group, true, [0.26, 0.39, 0.26]);
+          pdfLine(current.ops, x + 9, top - 19, x + 235, top - 19, [0.81, 0.85, 0.78], 0.5);
+          group.items.forEach((name, itemIndex) => {
+            const rowY = top - 31 - itemIndex * 8.5;
+            pdfText(current.ops, x + 9, rowY, 7.2, name, false, [0.22, 0.27, 0.22]);
+            pdfText(current.ops, x + 219, rowY, 8, String(state.skills[keysForSkills[name]]), true, [0.35, 0.47, 0.31]);
+          });
+        });
+        y -= cardHeight + 8;
+      });
+    }
+
+    function drawResourceCards() {
+      ensureSpace(54);
+      const resources = [
+        ["SANTÉ  ·  FORCE + AGILITÉ", state.stats.force + state.stats.agility],
+        ["RÉSOLUTION  ·  ESPRIT + EMPATHIE", state.stats.spirit + state.stats.empathy]
+      ];
+      resources.forEach((item, index) => {
+        const x = index === 0 ? 42 : 309;
+        pdfRect(current.ops, x, y - 43, 244, 43, [0.91, 0.94, 0.88]);
+        pdfText(current.ops, x + 12, y - 16, 7, item[0], true, [0.39, 0.46, 0.37]);
+        pdfText(current.ops, x + 12, y - 36, 15, String(item[1]), true, [0.2, 0.34, 0.22]);
+      });
+      y -= 53;
+    }
+
+    function drawHobby(hobby) {
+      const usage = wrapText("Usage : " + hobby.use, 112);
+      const talent = wrapText(hobby.talent, 112);
+      const height = 17 + usage.length * 10 + 13 + talent.length * 10 + 9;
+      if (height > 620) {
+        drawLongText("Hobby : " + hobby.name + " · usage", hobby.use);
+        drawLongText("Talent associé à " + hobby.name + " · 1 Résolution", hobby.talent);
+        return;
+      }
+      ensureSpace(height);
+      const top = y;
+      pdfRect(current.ops, 42, top - height, 511, height, [0.96, 0.97, 0.94]);
+      pdfText(current.ops, 53, top - 15, 10.5, hobby.name, true, [0.18, 0.28, 0.18]);
+      let textY = top - 29;
+      usage.forEach((line) => {
+        pdfText(current.ops, 53, textY, 7.6, line, false, [0.37, 0.43, 0.36]);
+        textY -= 9;
+      });
+      textY -= 3;
+      pdfText(current.ops, 53, textY, 7.4, "TALENT ASSOCIÉ  ·  ACTIVATION : 1 RÉSOLUTION", true, [0.43, 0.49, 0.42]);
+      textY -= 11;
+      talent.forEach((line) => {
+        pdfText(current.ops, 53, textY, 8, line, false, [0.16, 0.21, 0.17]);
+        textY -= 9;
+      });
+      y = top - height - 9;
+    }
+
+    startPage(true);
+
+    drawSection("01", "Identité");
+    drawFieldRow([["Nom", state.identity.lastName], ["Prénom", state.identity.firstName]]);
+    drawFieldRow([["Âge", state.identity.age], ["Pronoms", state.identity.pronouns]]);
+    drawFieldRow([["Activité principale", state.identity.activity], ["Communauté", state.identity.community]]);
+    drawFieldRow([["Lieu de vie", state.identity.home], ["Environnement", state.identity.environment]]);
+    drawFieldRow([["Origine", state.identity.origin], ["Lien important", state.identity.importantLink]]);
+    drawFieldRow([["Identifiant", state.identity.identifier]]);
+
+    drawSection("02", "Caractéristiques · 6 points au total · 1 à 3 chacune");
+    drawStats();
+
+    drawSection("03", "Compétences · 12 points à répartir · maximum 3 par compétence");
+    drawSkillGroups();
+
+    drawSection("04", "Ressources");
+    drawResourceCards();
+
+    drawSection("05", "Compagnon ou moyen personnel · une option");
+    drawFieldRow([["Catégorie", state.companion.type], ["Nom, modèle ou espèce", state.companion.option]]);
+    drawLongText("Détails du compagnon ou du moyen personnel", state.companion.detail);
+
+    drawSection("06", "Hobbies · 3 choix gratuits");
     const chosen = state.hobbies.map((name) => catalog.hobbies.find((hobby) => hobby.name === name)).filter(Boolean);
-    chosen.forEach((hobby, index) => {
-      const y = 602 - index * 62;
-      pdfRect(ops, 42, y, 511, 52, [0.96, 0.97, 0.94]);
-      pdfText(ops, 53, y + 36, 11, hobby.name, true, [0.18, 0.28, 0.18]);
-      pdfParagraph(ops, 53, y + 21, 7.2, "Usage : " + hobby.use, 104, 1, 8, [0.37, 0.43, 0.36]);
-      pdfText(ops, 53, y + 7, 6.5, "Talent associé · activation : 1 point de Résolution", false, [0.43, 0.49, 0.42]);
+    if (chosen.length) chosen.forEach(drawHobby);
+    else drawLongText("Hobbies choisis", "Aucun hobby choisi");
+    drawLongText("Règle des hobbies et talents", "Un seul hobby peut ajouter +1 D6 à un jet lorsqu’il est directement pertinent. Chaque talent coûte 1 point de Résolution, dépensé avant l’action ; un point dépensé n’est pas rendu en cas d’échec.");
+
+    drawSection("07", "Attaches et objectifs");
+    drawFieldRow([["Personnes importantes", state.attachments.people], ["Motivations / engagements", state.attachments.motivations]]);
+
+    drawSection("08", "Souvenir ou objet marquant");
+    drawLongText("Souvenir ou objet marquant", state.attachments.memory);
+
+    drawSection("09", "Équipement et parcours");
+    drawFieldRow([["Kit principal / matériel disponible", state.equipment.main], ["Contenu du kit principal", state.equipment.mainDetail]]);
+    drawFieldRow([["Kit de loisir / objets personnels", state.equipment.leisure], ["Objets liés au loisir", state.equipment.leisureDetail]]);
+    drawFieldRow([["Accès partagé / installations", state.equipment.shared], ["Conditions d’accès", state.equipment.sharedDetail]]);
+    drawFieldRow([["Protection / outils spécialisés", state.equipment.protection], ["Matériel adapté", state.equipment.protectionDetail]]);
+
+    drawSection("10", "Notes, relations et événements");
+    drawLongText("Notes, relations et événements", state.notes);
+
+    pages.forEach((page, index) => {
+      pdfLine(page.ops, 42, 42, 553, 42, [0.79, 0.83, 0.76], 0.55);
+      pdfText(page.ops, 42, 27, 6.8, "TERRE 2187  ·  FICHE PERSONNAGE COMPLÈTE", true, [0.5, 0.56, 0.49]);
+      pdfText(page.ops, 491, 27, 6.8, String(index + 1).padStart(2, "0") + " / " + String(pages.length).padStart(2, "0"), true, [0.5, 0.56, 0.49]);
     });
-
-    section(ops, 405, "07", "Attaches et objectifs");
-    fieldPdf(ops, 42, 383, 244, "Personnes importantes", state.attachments.people, 38);
-    fieldPdf(ops, 309, 383, 244, "Motivations / engagements", state.attachments.motivations, 38);
-    section(ops, 342, "08", "Souvenir ou objet marquant");
-    pdfParagraph(ops, 42, 321, 8.5, state.attachments.memory || "—", 100, 2, 11, [0.16, 0.21, 0.17]);
-    pdfLine(ops, 42, 294, 553, 294, [0.87, 0.89, 0.84], 0.45);
-
-    section(ops, 278, "09", "Équipement et parcours");
-    fieldPdf(ops, 42, 256, 244, "Kit principal / matériel", equipmentValue("main"), 38);
-    fieldPdf(ops, 309, 256, 244, "Kit de loisir / objets personnels", equipmentValue("leisure"), 38);
-    fieldPdf(ops, 42, 220, 244, "Accès partagé / installations", equipmentValue("shared"), 38);
-    fieldPdf(ops, 309, 220, 244, "Protection / outils spécialisés", equipmentValue("protection"), 38);
-
-    section(ops, 174, "10", "Notes / relations / événements");
-    pdfParagraph(ops, 42, 151, 8.2, state.notes || "—", 105, 7, 12, [0.16, 0.21, 0.17]);
-    pdfLine(ops, 42, 53, 553, 53, [0.79, 0.83, 0.76], 0.55);
-    pdfText(ops, 42, 37, 6.7, "Les accès partagés et équipements spécialisés dépendent du contexte et des autorisations.", false, [0.45, 0.5, 0.44]);
-    pdfText(ops, 494, 21, 6.8, "02 / 02", true, [0.5, 0.56, 0.49]);
-    return ops.join("\n");
+    return pages.map((page) => page.ops.join("\n"));
   }
   function bytesFromBinary(binary) {
     const bytes = new Uint8Array(binary.length);
@@ -695,17 +842,22 @@
     return bytes;
   }
   function makePdf() {
-    const pages = [buildPageOne(), buildPageTwo()];
+    const pages = buildPdfPages();
+    const firstFont = 3 + pages.length * 2;
+    const secondFont = firstFont + 1;
+    const pageRefs = pages.map((page, index) => (3 + index * 2) + " 0 R").join(" ");
     const objects = [
       "<< /Type /Catalog /Pages 2 0 R >>",
-      "<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>",
-      "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> /Contents 4 0 R >>",
-      "<< /Length " + pages[0].length + " >>\nstream\n" + pages[0] + "\nendstream",
-      "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> /Contents 6 0 R >>",
-      "<< /Length " + pages[1].length + " >>\nstream\n" + pages[1] + "\nendstream",
-      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>",
-      "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>"
+      "<< /Type /Pages /Kids [" + pageRefs + "] /Count " + pages.length + " >>"
     ];
+    pages.forEach((content, index) => {
+      const pageObject = 3 + index * 2;
+      const contentObject = pageObject + 1;
+      objects.push("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 " + firstFont + " 0 R /F2 " + secondFont + " 0 R >> >> /Contents " + contentObject + " 0 R >>");
+      objects.push("<< /Length " + content.length + " >>\nstream\n" + content + "\nendstream");
+    });
+    objects.push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>");
+    objects.push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>");
     let binary = "%PDF-1.4\n%âãÏÓ\n";
     const offsets = [0];
     objects.forEach((object, index) => {
